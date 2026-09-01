@@ -29,7 +29,7 @@
         .container { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
         
         .abas-menu { display: flex; background: #e9ecef; padding: 6px; border-radius: 8px; margin-bottom: 20px; gap: 6px; overflow-x: auto; }
-        .aba-btn { flex: 1; min-width: 140px; padding: 12px; background: var(--branco); border: 1px solid var(--cinza-borda); font-size: 13px; font-weight: 600; cursor: pointer; color: #495057; border-radius: 6px; text-align: center; transition: all 0.2s ease; }
+        .aba-btn { flex: 1; min-width: 140px; padding: 12px; background: var(--branco); border: 1px solid var(--cinza-borda); font-size: 13px; font-weight: 600; cursor: pointer; color: #495057; border-radius: 6px; text-align: center; transition: all 0.2s ease; white-space: nowrap; }
         .aba-btn.ativa { background-color: var(--verde-institucional); color: var(--branco); border-color: var(--verde-institucional); }
         
         .conteudo-aba { display: none; }
@@ -157,6 +157,7 @@
         <button class="aba-btn" id="btn-cadastro" onclick="mudarAba('cadastro')">📍 CAPTURA EM CAMPO</button>
         <button class="aba-btn" id="btn-catalogo" onclick="mudarAba('catalogo')">📊 MATRIZ DE DADOS</button>
         <button class="aba-btn" id="btn-emissao" onclick="mudarAba('emissao')">🖨️ PLACAS E LAUDOS</button>
+        <button class="aba-btn" id="btn-portal-ifpa" onclick="mudarAba('portal-ifpa')">🏛️ PORTAL IFPA</button>
     </div>
 
     <div id="inicio" class="conteudo-aba ativa">
@@ -164,7 +165,7 @@
             <div class="coluna-flex">
                 <div class="secao-card">
                     <h2>Sobre o Projeto</h2>
-                    <p style="font-size: 14px; line-height: 1.6; color: #333;">O <b>BioCatálogo Digital</b> nasceu como uma initiative voltada para o inventariamento dinâmico botânico e monitoramento geoespacial de longo prazo. O objetivo central é dar <b>total visibilidade ao Bosque da Ciência do IFPA Campus Itaituba</b>, transformando-o em uma vitrine viva de educação ambiental e pesquisa científica.</p>
+                    <p style="font-size: 14px; line-height: 1.6; color: #333;">O <b>BioCatálogo Digital</b> nasceu como uma iniciativa voltada para o inventariamento dinâmico botânico e monitoramento geoespacial de longo prazo. O objetivo central é dar <b>total visibilidade ao Bosque da Ciência do IFPA Campus Itaituba</b>, transformando-o em uma vitrine viva de educação ambiental e pesquisa científica.</p>
                     
                     <h3 style="color: var(--verde-institucional); font-size: 15px; margin-top: 15px;">Objetivos do Projeto:</h3>
                     <ul class="lista-objetivos">
@@ -180,7 +181,7 @@
                         <div class="meu-slide fade"><img src="final%20da%20trilha.jpeg" onclick="abrirLightboxCinema(1)"><div class="legenda-slide">Final da Trilha</div></div>
                         <div class="meu-slide fade"><img src="In%C3%ADcio%20da%20Trilha.jpeg" onclick="abrirLightboxCinema(2)"><div class="legenda-slide">Início da Trilha</div></div>
                         <div class="meu-slide fade"><img src="mapa%20da%20trilha.png" onclick="abrirLightboxCinema(3)"><div class="legenda-slide">Mapa da Trilha</div></div>
-                        <div class="meu-slide fade"><img src="Trilha%20guiada.jpg" onclick="abrirLightboxCinema(4)"><div class="legenda-slide">Trilha Guided</div></div>
+                        <div class="meu-slide fade"><img src="Trilha%20guiada.jpg" onclick="abrirLightboxCinema(4)"><div class="legenda-slide">Trilha Guiada</div></div>
                         <div class="meu-slide fade"><img src="acompanhamento%20tecnico.jpg" onclick="abrirLightboxCinema(5)"><div class="legenda-slide">Acompanhamento Técnico</div></div>
                         <div class="meu-slide fade"><img src="ambienta%C3%A7ao.jpg" onclick="abrirLightboxCinema(6)"><div class="legenda-slide">Ambientação</div></div>
                         <div class="meu-slide fade"><img src="conhecendo%20o%20bosque.jpg" onclick="abrirLightboxCinema(7)"><div class="legenda-slide">Conhecendo o Bosque</div></div>
@@ -197,7 +198,7 @@
                 
                 <div class="secao-preservacao">
                     <h3>🌱 Preservação e Sustentabilidade no Bosque</h3>
-                    <p>O Bosque da Ciência do IFPA Campus Itaituba configura-se como um fragmento florestal urbano de vital importância para a microregião do Tapajós. A sua preservação e o monitoramento sistemático de suas espécies arbóreas atuam diretamente na manutenção de microclimas locais, proteção do solo contra erosões hídricas e abrigo para a avifauna regional.</p>
+                    <p>O Bosque da Ciência do IFPA Campus Itaituba configura-se como um fragmento florestal urbano de vital importância para a microrregião do Tapajós. A sua preservação e o monitoramento sistemático de suas espécies arbóreas atuam diretamente na manutenção de microclimas locais, proteção do solo contra erosões hídricas e abrigo para a avifauna regional.</p>
                     <p style="margin-top: 8px;"><b>Compromisso Ecológico:</b> Mais do que um laboratório vivo para estudos biológicos e taxonômicos, salvaguardar este patrimônio natural fortalece a educação ambiental comunitária, mitigando os impactos da fragmentação de habitats e promovendo o desenvolvimento sustentável na Amazônia.</p>
                 </div>
             </div>
@@ -283,6 +284,18 @@
             <button class="btn-acao" style="background:#ffc107; color:black; margin-top:15px;" onclick="window.print()">🖨️ IMPRIMIR LAUDO</button>
         </div>
     </div>
+
+    <div id="portal-ifpa" class="conteudo-aba">
+        <div class="secao-card" style="padding: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">🌐 Portal Institucional IFPA Campus Itaituba</h2>
+                <a href="https://itaituba.ifpa.edu.br" target="_blank" class="btn-canal btn-portal" style="padding: 10px 18px; font-size: 13px; flex: initial;">
+                    ↗️ Abrir em Nova Guia
+                </a>
+            </div>
+            <iframe src="https://itaituba.ifpa.edu.br" style="width: 100%; height: 75vh; border: 1px solid var(--cinza-borda); border-radius: 6px; background: white;" title="Portal Oficial IFPA Campus Itaituba"></iframe>
+        </div>
+    </div>
 </div>
 
 <div id="lb-modal" class="lightbox-celular">
@@ -340,14 +353,12 @@
                     const dados = snapshot.val();
                     
                     if (dados) {
-                        // Converte o objeto e FORÇA a ordenação numérica do ID crescente
                         const listaTmp = Object.keys(dados)
                             .map(key => dados[key])
                             .sort((a, b) => Number(a.id) - Number(b.id));
 
                         const temSumauma = listaTmp.some(a => a.id == 14);
                         if (listaTmp.length < 14 || !temSumauma) {
-                            console.log("Detectada assincronia ou dados antigos no Firebase. Forçando sobreposição automática...");
                             dadosArvores = listaInicialBase;
                             sincronizarTudoParaFirebase();
                         } else {
@@ -568,7 +579,6 @@
             dadosArvores.push(novoItem);
         }
 
-        // Garante ordenação também antes de enviar um novo item criado
         dadosArvores.sort((a, b) => Number(a.id) - Number(b.id));
 
         sincronizarTudoParaFirebase();
