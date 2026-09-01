@@ -157,6 +157,7 @@
         <button class="aba-btn" id="btn-cadastro" onclick="mudarAba('cadastro')">📍 CAPTURA EM CAMPO</button>
         <button class="aba-btn" id="btn-catalogo" onclick="mudarAba('catalogo')">📊 MATRIZ DE DADOS</button>
         <button class="aba-btn" id="btn-emissao" onclick="mudarAba('emissao')">🖨️ PLACAS E LAUDOS</button>
+        <button class="aba-btn" id="btn-galeria" onclick="mudarAba('galeria')">📸 GALERIA INSTAGRAM</button>
         <button class="aba-btn" id="btn-portal-ifpa" onclick="mudarAba('portal-ifpa')">🏛️ PORTAL IFPA</button>
     </div>
 
@@ -285,6 +286,26 @@
         </div>
     </div>
 
+    <!-- NOVA ABA DA GALERIA INTEGRADA -->
+    <div id="galeria" class="conteudo-aba">
+        <div class="secao-card">
+            <h2>📸 Galeria do Bosque & Registros dos Visitantes</h2>
+            <p style="font-size: 14px; color: #555; margin-bottom: 15px;">Acompanhe em tempo real os registros e visitas no Bosque do IFPA Itaituba. Publique no Instagram com a hashtag oficial do projeto:</p>
+            <div style="display: inline-block; background-color: var(--verde-suave); color: var(--verde-escuro); padding: 8px 16px; border-radius: 20px; font-weight: bold; margin-bottom: 20px; border: 1px solid var(--verde-institucional);">
+                #BioBosqueIFPA
+            </div>
+            
+            <div style="min-height: 400px; width: 100%; border: 1px dashed var(--cinza-borda); border-radius: 8px; padding: 20px; text-align: center; background: #fafafa;">
+                <div class="elfsight-app-SUO-CODIGO-AQUI" data-elfsight-app-lazy>
+                    <p style="color: #888; font-size: 14px; margin-top: 50px;">
+                        📷 <b>Mural de Fotos Integrado</b><br>
+                        As fotos publicadas com a hashtag do Bosque aparecerão neste painel.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="portal-ifpa" class="conteudo-aba">
         <div class="secao-card" style="padding: 15px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
@@ -306,6 +327,7 @@
     <div id="lb-legenda" class="lb-legenda"></div>
 </div>
 
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
 <script>
     const listaInicialBase = [
         { id: 1, nome: "Acácia", cientifico: "Acacia mangium", familia: "Fabaceae", coord: "-4.22235, -56.00107", notas: "Árvore de rápido crescimento, amplamente utilizada para recuperação de solos degradados, fixação de nitrogênio e proteção de encostas.", foto: [] },
@@ -413,6 +435,12 @@
         });
     }
 
+    function definirCoordenadasFormulario(lat, lng) {
+        document.getElementById('reg-coords').value = `${lat}, ${lng}`;
+        if (marcadorCadastro) mapaCadastro.removeLayer(marcadorCadastro);
+        marcadorCadastro = L.marker([lat, lng]).addTo(mapaCadastro);
+    }
+
     function plotarMarcadores() {
         if (!camadaMarcadores) return;
         camadaMarcadores.clearLayers();
@@ -422,298 +450,231 @@
             m.bindPopup(`
                 <b>${arvore.nome}</b><br><i>${arvore.cientifico}</i><br><br>
                 <span style="font-size:11px; color:#666;">Coord: ${arvore.coord}</span><br>
-                <a href="#" onclick="event.preventDefault(); editarArvore(${arvore.id});" style="color:var(--verde-institucional); font-weight:bold; font-size:12px; display:inline-block; margin-top:5px;">✏️ Ver / Editar Ficha</a>
+                <a href="#" onclick="event.preventDefault(); editarArvore(${arvore.id});" style="color:var(--verde-institucional); font-weight:bold; font-size:12px; display:inline-block; margin-top:5px;">✏️ Ver / Editar</a>
             `);
         });
     }
 
-    function definirCoordenadasFormulario(lat, lng) {
-        document.getElementById('reg-coords').value = `${lat}, ${lng}`;
-        if (marcadorCadastro) {
-            marcadorCadastro.setLatLng([lat, lng]);
-        } else {
-            marcadorCadastro = L.marker([lat, lng], { draggable: true }).addTo(mapaCadastro);
-            marcadorCadastro.on('dragend', function(event) {
-                const marker = event.target;
-                const position = marker.getLatLng();
-                document.getElementById('reg-coords').value = `${position.lat.toFixed(5)}, ${position.lng.toFixed(5)}`;
-            });
+    function atualizarInterface() {
+        const corpo = document.getElementById('corpo-tabela');
+        const seletor = document.getElementById('seletor-laudos');
+        if (!corpo || !seletor) return;
+
+        corpo.innerHTML = '';
+        seletor.innerHTML = '<option value="">-- Selecione uma Espécie para Gerar Laudo/QR --</option>';
+
+        dadosArvores.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.onclick = () => editarArvore(item.id);
+            tr.innerHTML = `
+                <td><b>#${item.id}</b></td>
+                <td>${item.nome}</td>
+                <td><i>${item.cientifico}</i></td>
+                <td>${item.familia}</td>
+                <td>${item.notas}</td>
+                <td><small>${item.coord}</small></td>
+            `;
+            corpo.appendChild(tr);
+
+            const opt = document.createElement('option');
+            opt.value = item.id;
+            opt.textContent = `#${item.id} - ${item.nome} (${item.cientifico})`;
+            seletor.appendChild(opt);
+        });
+    }
+
+    function salvarItemArboreto() {
+        const id = document.getElementById('reg-id').value;
+        const coords = document.getElementById('reg-coords').value;
+        const nome = document.getElementById('reg-nome').value;
+        const cientifico = document.getElementById('reg-cientifico').value;
+        const familia = document.getElementById('reg-familia').value;
+        const caract = document.getElementById('reg-caract').value;
+
+        if (!coords || !nome) {
+            alert('Por favor, defina a localização no mapa e o Nome Popular da árvore.');
+            return;
         }
+
+        let item;
+        if (id) {
+            item = dadosArvores.find(a => a.id == id);
+            if (item) {
+                item.coord = coords;
+                item.nome = nome;
+                item.cientifico = cientifico;
+                item.familia = familia;
+                item.notas = caract;
+                if (fotoBase64Temporaria.length > 0) item.foto = fotoBase64Temporaria;
+            }
+        } else {
+            const novoId = dadosArvores.length > 0 ? Math.max(...dadosArvores.map(a => Number(a.id))) + 1 : 1;
+            item = {
+                id: novoId,
+                nome: nome,
+                cientifico: cientifico,
+                familia: familia,
+                coord: coords,
+                notas: caract,
+                foto: fotoBase64Temporaria
+            };
+            dadosArvores.push(item);
+        }
+
+        sincronizarTudoParaFirebase();
+        limparFormulario();
+        alert('Árvore salva com sucesso no banco de dados!');
+        mudarAba('catalogo');
+    }
+
+    function editarArvore(id) {
+        const item = dadosArvores.find(a => a.id == id);
+        if (!item) return;
+
+        mudarAba('cadastro');
+        document.getElementById('reg-id').value = item.id;
+        document.getElementById('reg-coords').value = item.coord;
+        document.getElementById('reg-nome').value = item.nome;
+        document.getElementById('reg-cientifico').value = item.cientifico;
+        document.getElementById('reg-familia').value = item.familia;
+        document.getElementById('reg-caract').value = item.notas;
+        document.getElementById('titulo-formulario').textContent = `✏️ Editar Espécie #${item.id}`;
+
+        if (item.coord) {
+            const [lat, lng] = item.coord.split(', ').map(Number);
+            mapaCadastro.setView([lat, lng], 18);
+            definirCoordenadasFormulario(lat, lng);
+        }
+    }
+
+    function limparFormulario() {
+        document.getElementById('reg-id').value = '';
+        document.getElementById('reg-coords').value = '';
+        document.getElementById('reg-nome').value = '';
+        document.getElementById('reg-cientifico').value = '';
+        document.getElementById('reg-familia').value = '';
+        document.getElementById('reg-caract').value = '';
+        document.getElementById('titulo-formulario').textContent = '📋 Dados de Inventário';
+        document.getElementById('container-evidencia').style.display = 'none';
+        document.getElementById('espaco-preview').innerHTML = '';
+        fotoBase64Temporaria = [];
+        if (marcadorCadastro) mapaCadastro.removeLayer(marcadorCadastro);
     }
 
     function dispararColetaCampo() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                const lat = position.coords.latitude.toFixed(5);
-                const lng = position.coords.longitude.toFixed(5);
+            navigator.geolocation.getCurrentPosition((pos) => {
+                const lat = pos.coords.latitude.toFixed(5);
+                const lng = pos.coords.longitude.toFixed(5);
+                mapaCadastro.setView([lat, lng], 18);
                 definirCoordenadasFormulario(lat, lng);
-                mapaCadastro.setView([lat, lng], 19);
-            }, () => { alert("Não foi possível capturar o GPS automático. Selecione o ponto clicando no mapa."); });
+            });
         }
         document.getElementById('input-camera').click();
     }
 
-    async function processarMidiaDispositivo(event) {
-        const arquivos = event.target.files;
-        if (!arquivos || arquivos.length === 0) return;
+    function processarMidiaDispositivo(e) {
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
 
-        const espacoPreview = document.getElementById('espaco-preview');
-        espacoPreview.innerHTML = '';
-        fotoBase64Temporaria = [];
-
-        const promessas = Array.from(arquivos).map(file => {
-            return new Promise((resolve) => {
-                const reader = new FileReader();
-                
-                if (file.type.startsWith('image/')) {
-                    reader.readAsDataURL(file);
-                    reader.onload = (e) => {
-                        const img = new Image();
-                        img.src = e.target.result;
-                        img.onload = () => {
-                            const canvas = document.createElement('canvas');
-                            const MAX_WIDTH = 600;
-                            const scale = MAX_WIDTH / img.width;
-                            canvas.width = MAX_WIDTH;
-                            canvas.height = img.height * scale;
-                            
-                            const ctx = canvas.getContext('2d');
-                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                            
-                            const base64Comprimida = canvas.toDataURL('image/jpeg', 0.7);
-                            fotoBase64Temporaria.push(base64Comprimida);
-                            
-                            const preview = document.createElement('img');
-                            preview.src = base64Comprimida;
-                            preview.className = 'preview-media-capturada';
-                            espacoPreview.appendChild(preview);
-                            resolve();
-                        };
-                    };
-                } else if (file.type.startsWith('video/')) {
-                    reader.readAsDataURL(file);
-                    reader.onload = (e) => {
-                        fotoBase64Temporaria.push(e.target.result);
-                        const preview = document.createElement('video');
-                        preview.src = e.target.result;
-                        preview.className = 'preview-media-capturada';
-                        preview.controls = true;
-                        preview.muted = true;
-                        espacoPreview.appendChild(preview);
-                        resolve();
-                    };
-                } else {
-                    resolve();
-                }
-            });
-        });
-
-        await Promise.all(promessas);
+        const espaco = document.getElementById('espaco-preview');
+        espaco.innerHTML = '';
         document.getElementById('container-evidencia').style.display = 'block';
-    }
-
-    function editarArvore(id) {
-        const arvore = dadosArvores.find(a => a.id == id);
-        if (!arvore) return;
-
-        document.getElementById('reg-id').value = arvore.id;
-        document.getElementById('reg-nome').value = arvore.nome;
-        document.getElementById('reg-cientifico').value = arvore.cientifico;
-        document.getElementById('reg-familia').value = arvore.familia;
-        document.getElementById('reg-caract').value = arvore.notas;
-        document.getElementById('reg-coords').value = arvore.coord;
-        
-        fotoBase64Temporaria = Array.isArray(arvore.foto) ? arvore.foto : (arvore.foto ? [arvore.foto] : []);
-        const espacoPreview = document.getElementById('espaco-preview');
-        espacoPreview.innerHTML = '';
-
-        if(fotoBase64Temporaria.length > 0) {
-            fotoBase64Temporaria.forEach(midia => {
-                if(midia.startsWith('data:video/')) {
-                    espacoPreview.innerHTML += `<video src="${midia}" class="preview-media-capturada" controls muted loop></video>`;
-                } else {
-                    espacoPreview.innerHTML += `<img src="${midia}" class="preview-media-capturada">`;
-                }
-            });
-            document.getElementById('container-evidencia').style.display = 'block';
-        } else {
-            document.getElementById('container-evidencia').style.display = 'none';
-        }
-
-        document.getElementById('titulo-formulario').innerHTML = `✏️ Ficha Técnica: ${arvore.nome} (ID: ${arvore.id})`;
-        document.getElementById('btn-salvar').innerHTML = "💾 SALVAR ALTERAÇÕES NA FICHA";
-
-        const coordsArr = arvore.coord.split(', ').map(Number);
-        definirCoordenadasFormulario(coordsArr[0], coordsArr[1]);
-
-        mudarAba('cadastro');
-        setTimeout(() => { mapaCadastro.setView(coordsArr, 19); }, 300);
-    }
-
-    function salvarItemArboreto() {
-        const idExistente = document.getElementById('reg-id').value;
-        const nome = document.getElementById('reg-nome').value;
-        const cie = document.getElementById('reg-cientifico').value;
-        const fam = document.getElementById('reg-familia').value;
-        const carat = document.getElementById('reg-caract').value;
-        let coords = document.getElementById('reg-coords').value;
-
-        if (!nome || !cie) { alert("Preencha o Nome Popular e o Científico!"); return; }
-        if (!coords) { alert("Por favor, selecione um ponto no mapa ou use o GPS antes de compilar!"); return; }
-
-        if (idExistente) {
-            const index = dadosArvores.findIndex(a => a.id == idExistente);
-            if (index !== -1) {
-                dadosArvores[index].nome = nome;
-                dadosArvores[index].cientifico = cie;
-                dadosArvores[index].familia = fam;
-                dadosArvores[index].notas = carat;
-                dadosArvores[index].coord = coords;
-                dadosArvores[index].foto = fotoBase64Temporaria;
-            }
-        } else {
-            const novoId = dadosArvores.length > 0 ? Math.max(...dadosArvores.map(a => a.id)) + 1 : 1;
-            const novoItem = {
-                id: novoId, nome: nome, cientifico: cie, familia: fam, notas: carat, coord: coords, foto: fotoBase64Temporaria
-            };
-            dadosArvores.push(novoItem);
-        }
-
-        dadosArvores.sort((a, b) => Number(a.id) - Number(b.id));
-
-        sincronizarTudoParaFirebase();
-        limparFormularioCadastro();
-        alert("Registro processado e sincronizado com sucesso na nuvem!");
-        mudarAba('catalogo');
-    }
-
-    function limparFormularioCadastro() {
-        document.getElementById('reg-id').value = "";
-        document.getElementById('reg-nome').value = "";
-        document.getElementById('reg-cientifico').value = "";
-        document.getElementById('reg-familia').value = "";
-        document.getElementById('reg-caract').value = "";
-        document.getElementById('reg-coords').value = "";
         fotoBase64Temporaria = [];
-        document.getElementById('container-evidencia').style.display = 'none';
-        document.getElementById('espaco-preview').innerHTML = '';
-        document.getElementById('titulo-formulario').innerHTML = "📋 Dados de Inventário";
-        document.getElementById('btn-salvar').innerHTML = "💾 COMPILAR REGISTRO NO ARBORETO";
-        if (marcadorCadastro) { mapaCadastro.removeLayer(marcadorCadastro); marcadorCadastro = null; }
-    }
 
-    function atualizarInterface() {
-        const corpoTabela = document.getElementById('corpo-tabela');
-        const seletor = document.getElementById('seletor-laudos');
-        if (!corpoTabela) return;
-        
-        corpoTabela.innerHTML = '';
-        let opcoesSeletor = '';
+        Array.from(files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                const base64 = evt.target.result;
+                fotoBase64Temporaria.push(base64);
 
-        dadosArvores.forEach(arvore => {
-            const linha = document.createElement('tr');
-            linha.onclick = () => editarArvore(arvore.id);
-            linha.innerHTML = `
-                <td><b>${arvore.id}</b></td>
-                <td>${arvore.nome}</td>
-                <td style="font-style: italic;">${arvore.cientifico}</td>
-                <td>${arvore.familia}</td>
-                <td>${arvore.notas || ""}</td>
-                <td><small>${arvore.coord}</small></td>
-            `;
-            corpoTabela.appendChild(linha);
-            opcoesSeletor += `<option value="${arvore.id}">${arvore.nome} [${arvore.cientifico}]</option>`;
+                if (file.type.startsWith('video/')) {
+                    espaco.innerHTML += `<video src="${base64}" class="preview-media-capturada" controls></video>`;
+                } else {
+                    espaco.innerHTML += `<img src="${base64}" class="preview-media-capturada">`;
+                }
+            };
+            reader.readAsDataURL(file);
         });
-
-        if (seletor) {
-            seletor.innerHTML = opcoesSeletor;
-            if (dadosArvores.length > 0) atualizarLaudo(dadosArvores[0].id);
-        }
     }
 
     function atualizarLaudo(id) {
-        const arvore = dadosArvores.find(a => a.id == id);
-        if (!arvore) return;
+        const item = dadosArvores.find(a => a.id == id);
+        if (!item) return;
 
-        document.getElementById('ld-nome').innerText = arvore.nome;
-        document.getElementById('ld-cie').innerText = arvore.cientifico;
-        document.getElementById('ld-fam').innerText = arvore.familia;
-        document.getElementById('ld-coord').innerText = arvore.coord;
-        document.getElementById('ld-notes').innerText = arvore.notas || "";
+        document.getElementById('ld-nome').textContent = item.nome;
+        document.getElementById('ld-cie').textContent = item.cientifico;
+        document.getElementById('ld-fam').textContent = item.familia;
+        document.getElementById('ld-coord').textContent = item.coord;
+        document.getElementById('ld-notes').textContent = item.notas;
 
         const containerFoto = document.getElementById('ld-container-foto');
-        const fotosValidas = Array.isArray(arvore.foto) ? arvore.foto : (arvore.foto ? [arvore.foto] : []);
-        
-        if (fotosValidas.length > 0) {
-            const midiaPrincipal = fotosValidas[0];
-            if (midiaPrincipal.startsWith('data:video/')) {
-                containerFoto.innerHTML = `<video src="${midiaPrincipal}" style="width:100%; height:100%; object-fit:cover;" autoplay muted loop></video>`;
-            } else {
-                containerFoto.innerHTML = `<img src="${midiaPrincipal}" style="width:100%; height:100%; object-fit:cover;">`;
-            }
+        if (item.foto && item.foto.length > 0) {
+            containerFoto.innerHTML = `<img src="${item.foto[0]}" style="width:100%; height:100%; object-fit:cover;">`;
         } else {
             containerFoto.innerHTML = `<div class="sem-foto-texto">Sem registro fotográfico</div>`;
         }
 
         const qrContainer = document.getElementById('qrcode');
         qrContainer.innerHTML = '';
-        const urlBusca = `https://maps.google.com/?q=${arvore.coord.replace(' ', '')}`;
         new QRCode(qrContainer, {
-            text: urlBusca, width: 110, height: 110, colorDark : "#005a2b", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.H
+            text: `https://www.google.com/maps?q=${item.coord}`,
+            width: 100,
+            height: 100
         });
     }
 
     function inicializarPontosCarrossel() {
-        const container = document.getElementById('container-pontinhos');
-        if (!container) return;
-        container.innerHTML = '';
-        fotosArray.forEach((_, index) => {
-            const ponto = document.createElement('span');
-            ponto.className = 'ponto';
-            ponto.onclick = () => currentSlide(index + 1);
-            container.appendChild(ponto);
+        const cont = document.getElementById('container-pontinhos');
+        if(!cont) return;
+        cont.innerHTML = '';
+        fotosArray.forEach((_, idx) => {
+            const span = document.createElement('span');
+            span.className = 'ponto';
+            span.onclick = () => irParaSlide(idx + 1);
+            cont.appendChild(span);
         });
     }
 
     function mudarSlide(n) { mostrarSlides(slideIndex += n); }
-    function currentSlide(n) { mostrarSlides(slideIndex = n); }
+    function irParaSlide(n) { mostrarSlides(slideIndex = n); }
 
     function mostrarSlides(n) {
         const slides = document.getElementsByClassName("meu-slide");
         const pontos = document.getElementsByClassName("ponto");
-        if (!slides.length) return;
+        if (slides.length === 0) return;
+        
         if (n > slides.length) { slideIndex = 1; }
         if (n < 1) { slideIndex = slides.length; }
+
         for (let i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
         for (let i = 0; i < pontos.length; i++) { pontos[i].className = pontos[i].className.replace(" active", ""); }
+
         slides[slideIndex - 1].style.display = "block";
         if (pontos[slideIndex - 1]) pontos[slideIndex - 1].className += " active";
     }
 
-    function abrirLightboxCinema(index) {
-        lightboxIndex = index;
-        document.getElementById('lb-img').src = fotosArray[lightboxIndex];
-        document.getElementById('lb-legenda').innerText = legendasArray[lightboxIndex];
-        document.getElementById('lb-modal').style.display = "flex";
+    function abrirLightboxCinema(idx) {
+        lightboxIndex = idx;
+        const modal = document.getElementById('lb-modal');
+        const img = document.getElementById('lb-img');
+        const leg = document.getElementById('lb-legenda');
+        img.src = fotosArray[lightboxIndex];
+        leg.textContent = legendasArray[lightboxIndex];
+        modal.style.display = 'flex';
     }
 
-    function fecharLightboxCinema() { document.getElementById('lb-modal').style.display = "none"; }
+    function fecharLightboxCinema() {
+        document.getElementById('lb-modal').style.display = 'none';
+    }
+
     function navegarLightbox(n) {
         lightboxIndex += n;
         if (lightboxIndex >= fotosArray.length) lightboxIndex = 0;
         if (lightboxIndex < 0) lightboxIndex = fotosArray.length - 1;
         document.getElementById('lb-img').src = fotosArray[lightboxIndex];
-        document.getElementById('lb-legenda').innerText = legendasArray[lightboxIndex];
+        document.getElementById('lb-legenda').textContent = legendasArray[lightboxIndex];
     }
-
-    window.mudarAba = mudarAba;
-    window.mudarSlide = mudarSlide;
-    window.abrirLightboxCinema = abrirLightboxCinema;
-    window.fecharLightboxCinema = fecharLightboxCinema;
-    window.navegarLightbox = navegarLightbox;
-    window.dispararColetaCampo = dispararColetaCampo;
-    window.salvarItemArboreto = salvarItemArboreto;
-    window.atualizarLaudo = atualizarLaudo;
 </script>
 </body>
 </html>
