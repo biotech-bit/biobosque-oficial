@@ -111,13 +111,41 @@
         .bloco-foto-laudo img, .bloco-foto-laudo video { width: 100%; height: 100%; object-fit: cover; }
         .sem-foto-texto { font-size: 11px; color: #999; text-align: center; padding: 5px; font-style: italic; }
 
+        /* REGRAS EXCLUSIVAS PARA EXIBIR O QR CODE E LAUDO NA IMPRESSÃO DO NAVEGADOR */
         @media print {
-            body { background: white; color: black; }
-            header, .abas-menu, .btn-acao, #map-principal, #map-cadastro, .canais-comunidade, .carrossel-container, .secao-card h2, #titulo-formulario, .formulario-grupo, #btn-salvar, table th, .secao-preservacao { display: none !important; }
-            .container { padding: 0; margin: 0; }
-            .conteudo-aba { display: none !important; }
-            #emissao { display: block !important; }
-            .bloco-laudo { border: none; padding: 0; margin: 0; }
+            body * {
+                visibility: hidden !important;
+            }
+            #emissao, #emissao .secao-card, .bloco-laudo, .bloco-laudo * {
+                visibility: visible !important;
+            }
+            #emissao {
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                width: 100% !important;
+            }
+            header, .abas-menu, #seletor-laudos, .btn-acao, .aviso-qr, .canais-comunidade {
+                display: none !important;
+            }
+            .bloco-laudo {
+                border: 2px solid #000 !important;
+                padding: 20px !important;
+                margin: 0 !important;
+                background: #fff !important;
+            }
+            .flex-laudo {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: flex-start !important;
+            }
+            #qrcode canvas, #qrcode img {
+                display: block !important;
+                visibility: visible !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
         }
     </style>
     
@@ -158,7 +186,6 @@
         <button class="aba-btn" id="btn-catalogo" onclick="mudarAba('catalogo')">📊 MATRIZ DE DADOS</button>
         <button class="aba-btn" id="btn-emissao" onclick="mudarAba('emissao')">🖨️ PLACAS E LAUDOS</button>
         <button class="aba-btn" id="btn-galeria" onclick="mudarAba('galeria')">📸 GALERIA INSTAGRAM</button>
-        <button class="aba-btn" id="btn-portal-ifpa" onclick="mudarAba('portal-ifpa')">🏛️ PORTAL IFPA</button>
     </div>
 
     <div id="inicio" class="conteudo-aba ativa">
@@ -266,12 +293,12 @@
                 <div class="flex-laudo">
                     <div style="flex: 1;">
                         <p style="font-size: 20px; font-weight: bold; margin-bottom: 10px; color: var(--verde-escuro);">FICHA DE IDENTIFICAÇÃO BOTÂNICA</p>
-                        <p><strong>Nome Popular:</strong> <span id="ld-nome"></span></p>
-                        <p><strong>Nome Científico:</strong> <span id="ld-cie" style="font-style:italic;"></span></p>
-                        <p><strong>Família:</strong> <span id="ld-fam"></span></p>
-                        <p><strong>Localização:</strong> <span id="ld-coord"></span></p>
-                        <p><strong>Notas de Pesquisa:</strong> <span id="ld-notes"></span></p>
-                        <span class="aviso-qr">💡 Escaneie o QR Code ao lado para abrir a localização e ficha completa via internet.</span>
+                        <p style="margin-bottom: 6px;"><strong>Nome Popular:</strong> <span id="ld-nome"></span></p>
+                        <p style="margin-bottom: 6px;"><strong>Nome Científico:</strong> <span id="ld-cie" style="font-style:italic;"></span></p>
+                        <p style="margin-bottom: 6px;"><strong>Família:</strong> <span id="ld-fam"></span></p>
+                        <p style="margin-bottom: 6px;"><strong>Localização:</strong> <span id="ld-coord"></span></p>
+                        <p style="margin-bottom: 6px;"><strong>Notas de Pesquisa:</strong> <span id="ld-notes"></span></p>
+                        <span class="aviso-qr">💡 Escaneie o QR Code ao lado para abrir a localização exata e ficha completa via GPS.</span>
                     </div>
                     
                     <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
@@ -282,11 +309,10 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-acao" style="background:#ffc107; color:black; margin-top:15px;" onclick="window.print()">🖨️ IMPRIMIR LAUDO</button>
+            <button class="btn-acao" style="background:#ffc107; color:black; margin-top:15px;" onclick="imprimirPlacaEspecifica()">🖨️ IMPRIMIR PLACA COM QR CODE</button>
         </div>
     </div>
 
-    <!-- NOVA ABA DA GALERIA INTEGRADA -->
     <div id="galeria" class="conteudo-aba">
         <div class="secao-card">
             <h2>📸 Galeria do Bosque & Registros dos Visitantes</h2>
@@ -303,18 +329,6 @@
                     </p>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div id="portal-ifpa" class="conteudo-aba">
-        <div class="secao-card" style="padding: 15px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
-                <h2 style="margin: 0;">🌐 Portal Institucional IFPA Campus Itaituba</h2>
-                <a href="https://itaituba.ifpa.edu.br" target="_blank" class="btn-canal btn-portal" style="padding: 10px 18px; font-size: 13px; flex: initial;">
-                    ↗️ Abrir Portal em Nova Guia
-                </a>
-            </div>
-            <iframe src="https://itaituba.ifpa.edu.br" style="width: 100%; height: 75vh; border: 1px solid var(--cinza-borda); border-radius: 6px; background: white;" title="Portal Oficial IFPA Campus Itaituba"></iframe>
         </div>
     </div>
 </div>
@@ -619,9 +633,18 @@
         qrContainer.innerHTML = '';
         new QRCode(qrContainer, {
             text: `https://www.google.com/maps?q=${item.coord}`,
-            width: 100,
-            height: 100
+            width: 110,
+            height: 110
         });
+    }
+
+    function imprimirPlacaEspecifica() {
+        const seletor = document.getElementById('seletor-laudos');
+        if (!seletor.value) {
+            alert('Selecione uma espécie na caixa de seleção antes de imprimir!');
+            return;
+        }
+        window.print();
     }
 
     function inicializarPontosCarrossel() {
