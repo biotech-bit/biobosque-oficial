@@ -12,7 +12,8 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
         body { background-color: var(--bg); padding-bottom: 90px; }
 
-        /* --- PÁGINA INICIAL (HERO) --- */index.html        .header-logos {
+        /* --- PÁGINA INICIAL (HERO) --- */
+        .header-logos {
             position: absolute; top: 20px; width: 100%; display: flex; 
             justify-content: space-between; padding: 0 25px; z-index: 10;
         }
@@ -49,26 +50,13 @@
         .tree-card img { width: 100%; height: 220px; object-fit: cover; }
         .info { padding: 20px; }
         .info h3 { color: var(--verde-escuro); text-transform: uppercase; margin-bottom: 5px; }
-        
-        /* CORREÇÃO DO QR CODE: Evita que apareça canvas + img duplicados */
-        .qr-container { background: #f9f9f9; padding: 15px; text-align: center; border-radius: 15px; margin-top: 15px; border: 1px dashed #ccc; display: flex; justify-content: center; align-items: center; }
-        .qr-container img { display: none; } /* Oculta a tag img sobressalente gerada pelo qrcodejs */
-        .qr-container canvas { display: block !important; margin: 0 auto; width: 120px !important; height: 120px !important; }
-
+        .qr-container { background: #f9f9f9; padding: 15px; text-align: center; border-radius: 15px; margin-top: 15px; border: 1px dashed #ccc; }
+        .qr-container canvas { margin: 0 auto; }
         .btn-map-link { background: #1976d2; color: white; border: none; padding: 12px; border-radius: 10px; width: 100%; margin-top: 15px; cursor: pointer; font-weight: bold; }
-
-        /* ESTILO PARA IMPRESSÃO */
-        @media print {
-            nav, .btn-principal, .btn-map-link, header, .header-logos { display: none !important; }
-            body { padding: 0; background: white; }
-            section { display: block !important; }
-            .tree-card { break-inside: avoid; page-break-inside: avoid; border: 1px solid #ccc; box-shadow: none; margin-bottom: 20px; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- 1. INÍCIO -->
     <section id="inicio" class="active-section">
         <div class="header-logos">
             <img src="biologia.jfif.jfif" class="logo-circle">
@@ -81,7 +69,6 @@
         </div>
     </section>
 
-    <!-- 2. CADASTRO -->
     <section id="cadastro">
         <h2>🌱 Registrar Árvore</h2>
         <div class="card">
@@ -101,13 +88,11 @@
         </div>
     </section>
 
-    <!-- 3. PASTA DE DADOS (INVENTÁRIO) -->
     <section id="catalogo">
         <h2>📖 Pasta de Identificação</h2>
         <div id="lista-plantas" class="grid"></div>
     </section>
 
-    <!-- 4. MAPA SATÉLITE -->
     <section id="mapa">
         <h2>📍 Localização Satélite Real</h2>
         <div class="card" style="height: 500px; padding: 0; overflow: hidden;">
@@ -161,7 +146,6 @@
         function atualizarPasta() {
             const container = document.getElementById('lista-plantas');
             container.innerHTML = "";
-            
             inventario.forEach(p => {
                 const card = document.createElement('div');
                 card.className = 'tree-card';
@@ -176,15 +160,9 @@
                     </div>
                 `;
                 container.appendChild(card);
-                
-                // Limpa o conteúdo da caixa antes de gerar para não duplicar
-                const qrElement = document.getElementById(`qr-${p.id}`);
-                qrElement.innerHTML = "";
-                
-                new QRCode(qrElement, {
+                new QRCode(document.getElementById(`qr-${p.id}`), {
                     text: `ÁRVORE: ${p.nome}\nCOORD: ${p.coords}`,
-                    width: 120, 
-                    height: 120
+                    width: 120, height: 120
                 });
             });
         }
