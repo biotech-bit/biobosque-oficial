@@ -51,13 +51,14 @@
         .info { padding: 20px; }
         .info h3 { color: var(--verde-escuro); text-transform: uppercase; margin-bottom: 5px; }
         
-        /* CORREÇÃO DO QR CODE */
+        /* CORREÇÃO DO QR CODE: Evita que apareça canvas + img duplicados */
         .qr-container { background: #f9f9f9; padding: 15px; text-align: center; border-radius: 15px; margin-top: 15px; border: 1px dashed #ccc; display: flex; justify-content: center; align-items: center; }
-        .qr-container img { display: none; }
+        .qr-container img { display: none; } /* Oculta a tag img sobressalente gerada pelo qrcodejs */
         .qr-container canvas { display: block !important; margin: 0 auto; width: 120px !important; height: 120px !important; }
 
         .btn-map-link { background: #1976d2; color: white; border: none; padding: 12px; border-radius: 10px; width: 100%; margin-top: 15px; cursor: pointer; font-weight: bold; }
 
+        /* ESTILO PARA IMPRESSÃO */
         @media print {
             nav, .btn-principal, .btn-map-link, header, .header-logos { display: none !important; }
             body { padding: 0; background: white; }
@@ -123,25 +124,7 @@
     </nav>
 
     <script>
-        // Dados das 14 espécies restaurados na estrutura original
-        const dadosIniciais = [
-            { id: 1, nome: "Acácia (Acacia mangium)", desc: "Família: Fabaceae. Árvore de rápido crescimento, amplamente utilizada para recuperação de solos degradados, fixação de nitrogênio e proteção de encostas.", coords: "-1.45560, -48.48510" },
-            { id: 2, nome: "Cacau Selvagem (Theobroma speciosum)", desc: "Família: Malvaceae. Espécie nativa do sub-bosque denso. Antecessora silvestre do cacau comercial, possui altíssimo valor para a preservação da biodiversidade genética regional.", coords: "-4.21931, -55.99794" },
-            { id: 3, nome: "Cajá (Spondias mombin)", desc: "Família: Anacardiaceae. Espécie frutífera de grande porte com alto potencial agroindustrial (polpas, sucos e geleias), além de alimentar a fauna local.", coords: "-1.45050, -48.46820" },
-            { id: 4, nome: "Cajueiro (Anacardium occidentale)", desc: "Família: Anacardiaceae. Frutífera nativa tropical. Apresenta pseudofruto rico em Vitamina C e castanha de elevado valor comercial e nutricional no mercado nacional.", coords: "-4.26750, -55.99330" },
-            { id: 5, nome: "Castanheira (Bertholletia excelsa)", desc: "Família: Lecythidaceae. Conhecida como a 'Gigante da Amazônia'. Espécie protegida por lei cuja semente possui extraordinário valor nutricional, comercial e ecológico.", coords: "-4.26776, -55.99316" },
-            { id: 6, nome: "Acácia (Acacia mangium)", desc: "Família: Fabaceae. Árvore de rápido crescimento, indicada para recuperação de áreas degradadas e proteção do solo (Ponto de monitoramento secundário).", coords: "-4.23860, -56.00827" },
-            { id: 7, nome: "Castanheira (Bertholletia excelsa)", desc: "Família: Lecythidaceae. Espécie protegida por lei. Considerada um gigante da Amazônia, com sementes de alto valor nutritivo e socioeconômico. [Ponto 1 - Beira Rio]", coords: "-4.22150, -55.99881" },
-            { id: 8, nome: "Cupuaçu (Theobroma grandiflorum)", desc: "Família: Malvaceae. Frutífera amazônica emblemática, cuja polpa e sementes possuem ampla aplicação culinária e na indústria de cosméticos.", coords: "-4.22100, -55.99892" },
-            { id: 9, nome: "Embaúba (Cecropia leucomela)", desc: "Família: Urticaceae. Planta pioneira de crescimento acelerado, fundamental em processos pioneiros de regeneração florestal espontânea.", coords: "-4.22181, -56.00067" },
-            { id: 10, nome: "Inajá (Maximiliana maripa)", desc: "Família: Arecaceae. Palmeira nativa de frutos oleaginosos e folhas largamente utilizadas em coberturas e artesanato tradicional.", coords: "-4.22139, -55.99881" },
-            { id: 11, nome: "Ipê (Handroanthus chrysanthus)", desc: "Família: Bignoniaceae. Espécie ornamental de madeira densa, com flores de alta expressividade estética e potencial terapêutico. (Área interna do bosque)", coords: "-4.22120, -55.99920" },
-            { id: 12, nome: "Mangueira (Mangifera indica)", desc: "Família: Anacardiaceae. Árvore exótica amplamente cultivada na região urbana e institucional pela oferta de sombra e frutos.", coords: "-4.22100, -55.99892" },
-            { id: 13, nome: "Mogno Africano (Khaya senegalensis)", desc: "Família: Meliaceae. Árvore introduzida de elevado valor comercial madeireiro, utilizada em modelos de reflorestamento produtivo comercial. (Área de transição)", coords: "-4.22140, -55.99950" },
-            { id: 14, nome: "Sumaúma (Ceiba pentandra)", desc: "Família: Malvaceae. Considerada a 'árvore da vida' ou 'rainha da floresta', possui imenso valor cultural e ecológico na Amazônia, atuando na retenção de água do solo.", coords: "-1.45560, -48.48510" }
-        ];
-
-        let inventario = JSON.parse(localStorage.getItem('tcc_final_rose_v14')) || dadosIniciais;
+        let inventario = JSON.parse(localStorage.getItem('tcc_final_rose')) || [];
 
         function irAba(id) {
             document.querySelectorAll('section').forEach(s => s.classList.remove('active-section'));
@@ -167,7 +150,7 @@
             reader.onloadend = function() {
                 nova.midia = reader.result || 'fundo.jpeg.jpeg';
                 inventario.push(nova);
-                localStorage.setItem('tcc_final_rose_v14', JSON.stringify(inventario));
+                localStorage.setItem('tcc_final_rose', JSON.stringify(inventario));
                 alert("Salvo com sucesso!");
                 irAba('catalogo');
             }
@@ -184,7 +167,7 @@
                 const card = document.createElement('div');
                 card.className = 'tree-card';
                 card.innerHTML = `
-                    <img src="${p.midia || 'fundo.jpeg.jpeg'}">
+                    <img src="${p.midia}">
                     <div class="info">
                         <h3>${p.nome}</h3>
                         <p>${p.desc}</p>
@@ -195,6 +178,7 @@
                 `;
                 container.appendChild(card);
                 
+                // Limpa o conteúdo da caixa antes de gerar para não duplicar
                 const qrElement = document.getElementById(`qr-${p.id}`);
                 qrElement.innerHTML = "";
                 
@@ -208,17 +192,11 @@
 
         function abrirNoMapa(coords) {
             const frame = document.getElementById('google-maps');
-            const coordsLimpa = coords.replace(/\s+/g, '');
-            frame.src = `https://maps.google.com/maps?q=${coordsLimpa}&t=k&z=19&output=embed`;
+            frame.src = `https://maps.google.com/maps?q=${coords}&t=k&z=19&output=embed`;
             irAba('mapa');
         }
 
-        window.onload = function() {
-            if (!localStorage.getItem('tcc_final_rose_v14')) {
-                localStorage.setItem('tcc_final_rose_v14', JSON.stringify(dadosIniciais));
-            }
-            atualizarPasta();
-        };
+        window.onload = atualizarPasta;
     </script>
 </body>
 </html>
