@@ -137,7 +137,7 @@
         .lb-proximo { right: 20px; top: 50%; transform: translateY(-50%); }
         .lb-legenda { position: absolute; bottom: 30px; color: white; font-size: 15px; background: rgba(0,0,0,0.7); padding: 8px 16px; border-radius: 20px; text-align: center; }
 
-        /* ESTILO ELEGANTE DO LAUDO DE IMPRESSÃO COM AS LOGOS INTEGRADAS */
+        /* ESTILO DO CARD / LAUDO DE IMPRESSÃO COM AS LOGOS INTEGRADAS */
         .bloco-laudo { 
             border: 3px double #008744; 
             padding: 24px; 
@@ -176,7 +176,7 @@
             letter-spacing: 1px;
         }
 
-        /* BLOCO CONTENDO AS LOGOS DO BIOBOSQUE, CAPS/CAPES E CNPq */
+        /* BLOCO CONTENDO AS LOGOS DO BIOBOSQUE, CAPES E CNPq */
         .bloco-logos-fomento {
             display: flex;
             align-items: center;
@@ -484,7 +484,6 @@
             <select id="seletor-laudos" onchange="atualizarLaudo(this.value)" style="width:100%; padding:12px; margin-bottom:15px; border-radius:6px; font-weight:bold; border:1px solid var(--verde-institucional);"></select>
             
             <div class="bloco-laudo">
-                <!-- CABEÇALHO DO CARD COM A SUA LOGO OFICIAL E AS LOGOS DA CAPES E CNPq -->
                 <div class="cabecalho-placa-institucional">
                     <div class="titulo-placa-area">
                         <h3>BIOBOSQUE</h3>
@@ -492,7 +491,7 @@
                     </div>
                     
                     <div class="bloco-logos-fomento" title="Logotipos Institucionais e de Fomento">
-                        <!-- 1. Sua Logo Oficial do BioBosque (com IFPA e Biologia integrados) -->
+                        <!-- 1. Logo BioBosque (com IFPA e Biologia integrados) -->
                         <div class="logo-item-container">
                             <img src="image_1e13fd.jpg" class="logo-item-placa" style="height: 38px; border-radius: 4px;" alt="Logo BioBosque">
                             <span class="legenda-logo-mini">BioBosque</span>
@@ -572,7 +571,7 @@
 
 <script src="https://static.elfsight.com/platform/platform.js" async></script>
 <script>
-    // BASE DE DADOS COMPLETA E PRESERVADA PARA O TCC (Nenhum item foi removido)
+    // BASE DE DADOS COMPLETA E PRESERVADA PARA O TCC
     const listaInicialBase = [
         { id: 1, nome: "Acácia", cientifico: "Acacia mangium", familia: "Fabaceae", coord: "-4.22235, -56.00107", notas: "Árvore de rápido crescimento, amplamente utilizada para recuperação de solos degradados, fixação de nitrogênio e proteção de encostas.", foto: ["acacia.jpg"] },
         { id: 2, nome: "Cacau Selvagem", cientifico: "Theobroma speciosum", familia: "Malvaceae", coord: "-4.22033, -55.99903", notas: "Espécie nativa do sub-bosque denso. Antecessora silvestre do cacau comercial, possui altíssimo valor para a preservação da biodiversidade genética regional.", foto: [] },
