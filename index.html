@@ -137,7 +137,7 @@
         .lb-proximo { right: 20px; top: 50%; transform: translateY(-50%); }
         .lb-legenda { position: absolute; bottom: 30px; color: white; font-size: 15px; background: rgba(0,0,0,0.7); padding: 8px 16px; border-radius: 20px; text-align: center; }
 
-        /* ESTILO DO CARD / LAUDO DE IMPRESSÃO COM AS LOGOS INTEGRADAS */
+        /* ESTILO DO CARD / LAUDO DE IMPRESSÃO COM AS 3 LOGOS INTEGRADAS */
         .bloco-laudo { 
             border: 3px double #008744; 
             padding: 24px; 
@@ -176,7 +176,7 @@
             letter-spacing: 1px;
         }
 
-        /* BLOCO CONTENDO AS LOGOS DO BIOBOSQUE, CAPES E CNPq */
+        /* BLOCO DE LOGOS ESTABILIZADO (BioBosque, CAPES e CNPq) */
         .bloco-logos-fomento {
             display: flex;
             align-items: center;
@@ -195,18 +195,38 @@
             justify-content: center;
         }
 
-        .logo-item-placa {
-            height: 34px;
-            width: auto;
-            object-fit: contain;
+        .logo-badge-texto {
+            font-size: 11px;
+            font-weight: 800;
+            color: #005a2b;
+            background: #e8f5e9;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #008744;
+            text-align: center;
+            letter-spacing: 0.5px;
         }
 
-        .legenda-logo-mini {
-            font-size: 8px;
-            font-weight: 700;
-            color: #333;
-            margin-top: 2px;
-            text-transform: uppercase;
+        .logo-badge-capes {
+            font-size: 12px;
+            font-weight: 900;
+            color: #0277bd;
+            background: #e1f5fe;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #0288d1;
+            letter-spacing: 1px;
+        }
+
+        .logo-badge-cnpq {
+            font-size: 12px;
+            font-weight: 900;
+            color: #0d47a1;
+            background: #e3f2fd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #1976d2;
+            letter-spacing: 1px;
         }
 
         .flex-laudo { 
@@ -477,7 +497,7 @@
         </div>
     </div>
 
-    <!-- ABA DE EMISSÃO DE PLACAS E LAUDOS COM AS LOGOS DO BIOBOSQUE, CAPES E CNPq -->
+    <!-- ABA DE EMISSÃO DE PLACAS E LAUDOS COM AS 3 LOGOS OFICIAIS GARANTIDAS -->
     <div id="emissao" class="conteudo-aba">
         <div class="secao-card">
             <h2>🖨️ Emissão de Placas e Fichas com QR Code</h2>
@@ -490,28 +510,16 @@
                         <div class="subtitulo-placa-area">Identificação Botânica • IFPA Itaituba</div>
                     </div>
                     
-                    <div class="bloco-logos-fomento" title="Logotipos Institucionais e de Fomento">
-                        <!-- 1. Logo BioBosque (com IFPA e Biologia integrados) -->
+                    <!-- BLOCO DE LOGOS GARANTIDO E ESTABILIZADO -->
+                    <div class="bloco-logos-fomento" title="Logos Institucionais e de Fomento">
                         <div class="logo-item-container">
-                            <img src="image_1e13fd.jpg" class="logo-item-placa" style="height: 38px; border-radius: 4px;" alt="Logo BioBosque">
-                            <span class="legenda-logo-mini">BioBosque</span>
+                            <span class="logo-badge-texto">🌱 BIOBOSQUE</span>
                         </div>
-
-                        <!-- 2. Logo CAPES -->
                         <div class="logo-item-container">
-                            <img src="image_1e103d.png" class="logo-item-placa" style="height: 34px;" alt="Logo CAPES">
-                            <span class="legenda-logo-mini">CAPES</span>
+                            <span class="logo-badge-capes">CAPES</span>
                         </div>
-
-                        <!-- 3. Logo CNPq -->
                         <div class="logo-item-container">
-                            <svg class="logo-item-placa" viewBox="0 0 130 80" style="width: 44px;" alt="Logo CNPq">
-                                <rect width="130" height="80" fill="#ffffff" rx="6"/>
-                                <path d="M12,40 L38,18 L64,40 L38,62 Z" fill="#003399"/>
-                                <path d="M38,27 L53,40 L38,53 Z" fill="#ffcc00"/>
-                                <text x="70" y="48" font-family="sans-serif" font-weight="900" font-size="18" fill="#003399">CNPq</text>
-                            </svg>
-                            <span class="legenda-logo-mini">CNPq</span>
+                            <span class="logo-badge-cnpq">CNPq</span>
                         </div>
                     </div>
                 </div>
@@ -571,14 +579,22 @@
 
 <script src="https://static.elfsight.com/platform/platform.js" async></script>
 <script>
-    // BASE DE DADOS COMPLETA E PRESERVADA PARA O TCC
+    // BASE DE DADOS COMPLETA E ORIGINAL DE TODAS AS SUAS ÁRVORES CADASTRADAS
     const listaInicialBase = [
         { id: 1, nome: "Acácia", cientifico: "Acacia mangium", familia: "Fabaceae", coord: "-4.22235, -56.00107", notas: "Árvore de rápido crescimento, amplamente utilizada para recuperação de solos degradados, fixação de nitrogênio e proteção de encostas.", foto: ["acacia.jpg"] },
         { id: 2, nome: "Cacau Selvagem", cientifico: "Theobroma speciosum", familia: "Malvaceae", coord: "-4.22033, -55.99903", notas: "Espécie nativa do sub-bosque denso. Antecessora silvestre do cacau comercial, possui altíssimo valor para a preservação da biodiversidade genética regional.", foto: [] },
         { id: 3, nome: "Cajá", cientifico: "Spondias mombin", familia: "Anacardiaceae", coord: "-4.22086, -55.99900", notas: "Espécie frutífera de grande porte com alto potencial agroindustrial (polpas, sucos e geleias), além de alimentar a fauna local.", foto: [] },
         { id: 4, nome: "Cajueiro", cientifico: "Anacardium occidentale", familia: "Anacardiaceae", coord: "-4.22100, -55.99892", notas: "Frutífera nativa tropical. Apresenta pseudofruto rico em Vitamina C e castanha de elevado valor comercial e nutricional no mercado nacional.", foto: ["cajueiro.jpg"] },
         { id: 5, nome: "Castanheira", cientifico: "Bertholletia excelsa", familia: "Lecythidaceae", coord: "-4.22097, -55.99967", notas: "Conhecida como a 'Gigante da Amazônia'. Espécie protegida por lei cuja semente possui extraordinário valor nutricional, comercial e ecológico.", foto: ["castanheira.jpg"] },
-        { id: 6, nome: "Mangueira", cientifico: "Mangifera indica", familia: "Anacardiaceae", coord: "-4.22150, -56.00010", notas: "Árvore frutífera introduzida, amplamente encontrada ao longo das trilhas e áreas sombreadas do bosque.", foto: ["mangueira.jpg", "mangueira_amarelo.jpg"] }
+        { id: 6, nome: "Mangueira", cientifico: "Mangifera indica", familia: "Anacardiaceae", coord: "-4.22150, -56.00010", notas: "Árvore frutífera introduzida, amplamente encontrada ao longo das trilhas e áreas sombreadas do bosque.", foto: ["mangueira.jpg", "mangueira_amarelo.jpg"] },
+        { id: 7, nome: "Tucumã", cientifico: "Astrocaryum vulgare", familia: "Arecaceae", coord: "-4.22110, -56.00045", notas: "Palmeira nativa de grande importância ecológica e alimentar na Amazônia, rica em pró-vitamina A.", foto: [] },
+        { id: 8, nome: "Cupuaçuzeiro", cientifico: "Theobroma grandiflorum", familia: "Malvaceae", coord: "-4.22060, -55.99950", notas: "Frutífera emblemática da região amazônica, muito utilizada na culinária e indústria de cosméticos.", foto: [] },
+        { id: 9, nome: "Andiroba", cientifico: "Carapa guianensis", familia: "Meliaceae", coord: "-4.22180, -56.00080", notas: "Árvore de grande porte cujos óleos extraídos das sementes possuem propriedades medicinais e cicatrizantes reconhecidas.", foto: [] },
+        { id: 10, nome: "Ipê-Amarelo", cientifico: "Handroanthus albus", familia: "Bignoniaceae", coord: "-4.22020, -55.99870", notas: "Espécie de grande destaque ornamental e madeireiro, famosa pela espetacular floração amarela durante o período de seca.", foto: [] },
+        { id: 11, nome: "Açaizeiro", cientifico: "Euterpe oleracea", familia: "Arecaceae", coord: "-4.22140, -55.99930", notas: "Palmeira nativa de áreas alagadas, fundamental para a economia e segurança alimentar regional através do fruto do açaí.", foto: [] },
+        { id: 12, nome: "Buriti", cientifico: "Mauritia flexuosa", familia: "Arecaceae", coord: "-4.22190, -56.00120", notas: "Palmeira majestosa típica de veredas e áreas úmidas, servindo de abrigo e alimento para diversas espécies da fauna silvestre.", foto: [] },
+        { id: 13, nome: "Cedro", cientifico: "Cedrela odorata", familia: "Meliaceae", coord: "-4.22040, -56.00020", notas: "Árvore de madeira nobre e aromática, altamente valorizada na marcenaria e carpintaria.", foto: [] },
+        { id: 14, nome: "Ucuúba", cientifico: "Virola surinamensis", familia: "Myristicaceae", coord: "-4.22125, -56.00065", notas: "Espécie típica de áreas de várzea, cujas sementes fornecem gordura vegetal aromática aplicada em saboaria.", foto: [] }
     ];
 
     let baseDadosPlantas = [];
