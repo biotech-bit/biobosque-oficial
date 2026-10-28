@@ -137,7 +137,7 @@
         .lb-proximo { right: 20px; top: 50%; transform: translateY(-50%); }
         .lb-legenda { position: absolute; bottom: 30px; color: white; font-size: 15px; background: rgba(0,0,0,0.7); padding: 8px 16px; border-radius: 20px; text-align: center; }
 
-        /* NOVO DESIGN DO CARD / LAUDO DE IMPRESSÃO DE ALTA QUALIDADE */
+        /* ESTILO ELEGANTE DO LAUDO DE IMPRESSÃO COM AS LOGOS INTEGRADAS */
         .bloco-laudo { 
             border: 3px double #008744; 
             padding: 24px; 
@@ -146,7 +146,6 @@
             margin-top: 15px; 
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
             position: relative;
-            overflow: hidden;
         }
 
         .cabecalho-placa-institucional {
@@ -177,22 +176,37 @@
             letter-spacing: 1px;
         }
 
-        /* LOGOS DISCRETAS NO CANTO SUPERIOR DIREITO DO CARD */
+        /* BLOCO CONTENDO AS LOGOS DO BIOBOSQUE, CAPS/CAPES E CNPq */
         .bloco-logos-fomento {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             background: #ffffff;
-            padding: 4px 8px;
-            border-radius: 6px;
-            border: 1px solid #e0e0e0;
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid #a5d6a7;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+
+        .logo-item-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .logo-item-placa {
-            height: 32px;
+            height: 34px;
             width: auto;
-            max-width: 50px;
             object-fit: contain;
+        }
+
+        .legenda-logo-mini {
+            font-size: 8px;
+            font-weight: 700;
+            color: #333;
+            margin-top: 2px;
+            text-transform: uppercase;
         }
 
         .flex-laudo { 
@@ -237,7 +251,6 @@
             justify-content: center; 
         }
 
-        /* Garantia para Renderização em Dispositivos Móveis e Impressão */
         #qrcode img, .qr-herbario-box img {
             display: block !important;
             width: 100% !important;
@@ -278,7 +291,7 @@
             #emissao, #emissao .secao-card, .bloco-laudo, .bloco-laudo * { visibility: visible !important; }
             #emissao { position: absolute !important; left: 0 !important; top: 0 !important; width: 100% !important; }
             header, .abas-menu, #seletor-laudos, .btn-acao, .aviso-qr, .canais-comunidade { display: none !important; }
-            .bloco-laudo { border: 2px solid #000 !important; padding: 20px !important; margin: 0 !important; background: #fff !important; }
+            .bloco-laudo { border: 2px solid #000 !important; padding: 20px !important; margin: 0 !important; background: #fff !important; box-shadow: none !important; }
             .flex-laudo { display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: flex-start !important; }
             #qrcode canvas, .qr-herbario-box canvas { display: none !important; }
             #qrcode img, .qr-herbario-box img { display: block !important; visibility: visible !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
@@ -464,49 +477,43 @@
         </div>
     </div>
 
-    <!-- ABA DE EMISSÃO DE PLACAS E LAUDOS COM NOVO DESIGN INSTITUCIONAL -->
+    <!-- ABA DE EMISSÃO DE PLACAS E LAUDOS COM AS LOGOS DO BIOBOSQUE, CAPES E CNPq -->
     <div id="emissao" class="conteudo-aba">
         <div class="secao-card">
             <h2>🖨️ Emissão de Placas e Fichas com QR Code</h2>
             <select id="seletor-laudos" onchange="atualizarLaudo(this.value)" style="width:100%; padding:12px; margin-bottom:15px; border-radius:6px; font-weight:bold; border:1px solid var(--verde-institucional);"></select>
             
             <div class="bloco-laudo">
-                <!-- CABEÇALHO DO CARD COM EMBLEMAS DISCRETOS DE FOMENTO -->
+                <!-- CABEÇALHO DO CARD COM A SUA LOGO OFICIAL E AS LOGOS DA CAPES E CNPq -->
                 <div class="cabecalho-placa-institucional">
                     <div class="titulo-placa-area">
                         <h3>BIOBOSQUE</h3>
-                        <div class="subtitulo-placa-area">Identificação Botânica e Monitoramento • IFPA Itaituba</div>
+                        <div class="subtitulo-placa-area">Identificação Botânica • IFPA Itaituba</div>
                     </div>
                     
-                    <!-- BLOCO DE LOGOS INSTITUCIONAIS E CNPq -->
-                    <div class="bloco-logos-fomento">
-                        <!-- Logo BioBosque / Biologia -->
-                        <svg class="logo-item-placa" viewBox="0 0 100 100" title="BioBosque / Biologia">
-                            <circle cx="50" cy="50" r="45" fill="#e8f5e9" stroke="#008744" stroke-width="4"/>
-                            <path d="M50,20 C35,40 35,65 50,80 C65,65 65,40 50,20 Z" fill="#008744"/>
-                            <path d="M50,25 C40,42 40,60 50,72" fill="none" stroke="#ffffff" stroke-width="2"/>
-                        </svg>
-                        
-                        <!-- Logo IFPA -->
-                        <svg class="logo-item-placa" viewBox="0 0 100 100" title="IFPA Campus Itaituba">
-                            <rect x="10" y="10" width="24" height="24" fill="#dc3545" rx="4"/>
-                            <rect x="38" y="10" width="24" height="24" fill="#008744" rx="4"/>
-                            <rect x="66" y="10" width="24" height="24" fill="#008744" rx="4"/>
-                            <rect x="10" y="38" width="24" height="24" fill="#008744" rx="4"/>
-                            <rect x="38" y="38" width="24" height="24" fill="#008744" rx="4"/>
-                            <rect x="66" y="38" width="24" height="24" fill="#008744" rx="4"/>
-                            <rect x="10" y="66" width="24" height="24" fill="#008744" rx="4"/>
-                            <rect x="38" y="66" width="24" height="24" fill="#008744" rx="4"/>
-                            <rect x="66" y="66" width="24" height="24" fill="#008744" rx="4"/>
-                        </svg>
+                    <div class="bloco-logos-fomento" title="Logotipos Institucionais e de Fomento">
+                        <!-- 1. Sua Logo Oficial do BioBosque (com IFPA e Biologia integrados) -->
+                        <div class="logo-item-container">
+                            <img src="image_1e13fd.jpg" class="logo-item-placa" style="height: 38px; border-radius: 4px;" alt="Logo BioBosque">
+                            <span class="legenda-logo-mini">BioBosque</span>
+                        </div>
 
-                        <!-- Logo CNPq -->
-                        <svg class="logo-item-placa" viewBox="0 0 120 80" title="CNPq - Fomento de Pesquisa">
-                            <rect width="120" height="80" fill="#ffffff" rx="4"/>
-                            <path d="M15,40 L45,15 L75,40 L45,65 Z" fill="#003399"/>
-                            <path d="M45,25 L65,40 L45,55 Z" fill="#ffcc00"/>
-                            <text x="82" y="48" font-family="sans-serif" font-weight="900" font-size="20" fill="#003399">CNPq</text>
-                        </svg>
+                        <!-- 2. Logo CAPES -->
+                        <div class="logo-item-container">
+                            <img src="image_1e103d.png" class="logo-item-placa" style="height: 34px;" alt="Logo CAPES">
+                            <span class="legenda-logo-mini">CAPES</span>
+                        </div>
+
+                        <!-- 3. Logo CNPq -->
+                        <div class="logo-item-container">
+                            <svg class="logo-item-placa" viewBox="0 0 130 80" style="width: 44px;" alt="Logo CNPq">
+                                <rect width="130" height="80" fill="#ffffff" rx="6"/>
+                                <path d="M12,40 L38,18 L64,40 L38,62 Z" fill="#003399"/>
+                                <path d="M38,27 L53,40 L38,53 Z" fill="#ffcc00"/>
+                                <text x="70" y="48" font-family="sans-serif" font-weight="900" font-size="18" fill="#003399">CNPq</text>
+                            </svg>
+                            <span class="legenda-logo-mini">CNPq</span>
+                        </div>
                     </div>
                 </div>
 
@@ -524,7 +531,6 @@
                         <div id="ld-container-foto" class="bloco-foto-laudo">
                             <div class="sem-foto-texto">Sem registro fotográfico</div>
                         </div>
-                        <!-- QR Code com garantia de renderização -->
                         <div id="qrcode"></div>
                     </div>
                 </div>
@@ -566,6 +572,7 @@
 
 <script src="https://static.elfsight.com/platform/platform.js" async></script>
 <script>
+    // BASE DE DADOS COMPLETA E PRESERVADA PARA O TCC (Nenhum item foi removido)
     const listaInicialBase = [
         { id: 1, nome: "Acácia", cientifico: "Acacia mangium", familia: "Fabaceae", coord: "-4.22235, -56.00107", notas: "Árvore de rápido crescimento, amplamente utilizada para recuperação de solos degradados, fixação de nitrogênio e proteção de encostas.", foto: ["acacia.jpg"] },
         { id: 2, nome: "Cacau Selvagem", cientifico: "Theobroma speciosum", familia: "Malvaceae", coord: "-4.22033, -55.99903", notas: "Espécie nativa do sub-bosque denso. Antecessora silvestre do cacau comercial, possui altíssimo valor para a preservação da biodiversidade genética regional.", foto: [] },
@@ -581,7 +588,6 @@
     let marcadorCadastro = null;
     let marcadoresNoMapaPrincipal = [];
 
-    // Variáveis de controle dos Carrosséis e Lightbox
     let slideIndex = 0;
     let slidePresIndex = 0;
     let listaImagensLightbox = [];
@@ -624,7 +630,6 @@
         
         document.getElementById(idAba).classList.add('ativa');
         
-        // Ativar botão correto
         const btnCorrespondente = document.getElementById(`btn-${idAba}`);
         if(btnCorrespondente) btnCorrespondente.classList.add('ativa');
 
@@ -643,12 +648,10 @@
     }
 
     function inicializarMapas() {
-        // Mapa Principal
         mapPrincipal = L.map('map-principal').setView([-4.2212, -56.0000], 16);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(mapPrincipal);
         atualizarMapaPrincipal();
 
-        // Mapa Cadastro
         mapCadastro = L.map('map-cadastro').setView([-4.2212, -56.0000], 16);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(mapCadastro);
         
@@ -741,7 +744,6 @@
         }
     }
 
-    // Coleta de Evidências e Metadados EXIF
     function dispararColetaCampo() {
         document.getElementById('input-camera').click();
     }
@@ -937,12 +939,11 @@
             `;
             grid.appendChild(card);
 
-            // Gerar QR Code no Card do Herbário com Conversão
             setTimeout(() => {
                 const el = document.getElementById(`qr-herb-${item.id}`);
                 if (el) {
                     el.innerHTML = '';
-                    const qrcodeObj = new QRCode(el, {
+                    new QRCode(el, {
                         text: `https://biobosque.online/especie/${item.id}`,
                         width: 72,
                         height: 72
@@ -983,7 +984,6 @@
         }
     }
 
-    // ATUALIZAÇÃO DO LAUDO/PLACA COM CONVERSÃO DE QR CODE PARA PNG NATIVO
     function atualizarLaudo(id) {
         const item = baseDadosPlantas.find(p => p.id == id);
         if (!item) return;
@@ -1004,7 +1004,6 @@
         const qrBox = document.getElementById('qrcode');
         qrBox.innerHTML = '';
         
-        // Gerar QR Code e Converter de Canvas para Imagem NNNN
         new QRCode(qrBox, {
             text: `https://biobosque.online/especie/${item.id}`,
             width: 120,
@@ -1031,7 +1030,6 @@
         setTimeout(() => window.print(), 300);
     }
 
-    // Controle do Carrossel Principal
     function inicializarCarrosselPrincipal() {
         const slides = document.querySelectorAll('.meu-slide');
         const containerPontos = document.getElementById('container-pontinhos');
@@ -1069,7 +1067,6 @@
         pontos[slideIndex].classList.add('active');
     }
 
-    // Carrossel Preservação
     function inicializarCarrosselPreservacao() {
         mostrarSlidePreservacao(slidePresIndex);
     }
@@ -1089,7 +1086,6 @@
         slides[slidePresIndex].style.display = 'block';
     }
 
-    // Lightbox de Imagens
     function abrirLightboxCinema(indice) {
         const slides = document.querySelectorAll('.meu-slide img');
         listaImagensLightbox = Array.from(slides).map(s => s.src);
