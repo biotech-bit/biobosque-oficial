@@ -27,9 +27,38 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background-color: #f1f3f5; color: var(--texto-escuro); min-height: 100vh; display: flex; flex-direction: column; }
         
-        /* HEADER COM A SUA LOGO EMBUTIDA EM BASE64 (SEM ERRO DE CAMINHO) */
-        header { background: linear-gradient(135deg, var(--verde-institucional), var(--verde-escuro)); color: var(--branco); padding: 15px 25px; box-shadow: 0 3px 10px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: flex-start; gap: 20px; }
-        .logo-header-img { width: 65px; height: 65px; object-fit: cover; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.3); background: #fff; flex-shrink: 0; }
+        /* HEADER */
+        header { background: linear-gradient(135deg, var(--verde-institucional), var(--verde-escuro)); color: var(--branco); padding: 15px 20px; box-shadow: 0 3px 10px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; gap: 20px; }
+        
+        /* LOGO EMBLEMÁTICA VETORIAL */
+        .logo-emblema-svg {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .logo-laudo-mini {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid #008744;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
         .header-texto-box { text-align: left; }
         header h1 { font-size: 24px; font-weight: 700; letter-spacing: 1px; }
         header p { font-size: 14px; opacity: 0.9; margin-top: 2px; }
@@ -67,7 +96,7 @@
         .ponto { cursor: pointer; height: 10px; width: 10px; margin: 0 5px; background-color: #555; border-radius: 50%; display: inline-block; transition: 0.3s; }
         .ponto.active { background-color: var(--branco); transform: scale(1.2); }
         
-        /* Carrossel Interno da Preservação */
+        /* Carrossel de Preservação */
         .carrossel-preservacao { position: relative; width: 100%; height: 200px; margin-bottom: 15px; border-radius: 6px; overflow: hidden; background: #111; }
         .slide-pres { display: none; width: 100%; height: 100%; position: relative; }
         .slide-pres img { width: 100%; height: 100%; object-fit: cover; }
@@ -141,10 +170,9 @@
         .lb-proximo { right: 20px; top: 50%; transform: translateY(-50%); }
         .lb-legenda { position: absolute; bottom: 30px; color: white; font-size: 15px; background: rgba(0,0,0,0.7); padding: 8px 16px; border-radius: 20px; text-align: center; }
 
-        /* BLOCO DE LAUDO / PLACA COM A SUA LOGO EMBUTIDA PERFEITAMENTE */
+        /* BLOCO DE LAUDO / PLACA */
         .bloco-laudo { border: 2px solid #008744; padding: 20px; border-radius: 8px; background: white; margin-top: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
         .cabecalho-laudo-placa { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #008744; padding-bottom: 10px; margin-bottom: 12px; }
-        .logo-laudo-mini { width: 55px; height: 55px; object-fit: cover; border-radius: 50%; border: 2px solid #008744; box-shadow: 0 2px 4px rgba(0,0,0,0.1); background: #fff; flex-shrink: 0; }
         
         .flex-laudo { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
         .aviso-qr { font-size: 11px; color: #555; margin-top: 8px; display: block; font-style: italic; line-height: 1.4; }
@@ -192,9 +220,16 @@
 </head>
 <body>
 
-<!-- HEADER COM A SUA LOGO DO BIOBOSQUE EM BASE64 INTEGRADA -->
+<!-- HEADER COM LOGO BIOBOSQUE VETORIAL -->
 <header>
-    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAAPAA8BAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=" class="logo-header-img" alt="Logo BioBosque" id="logo-header">
+    <div class="logo-emblema-svg" title="BioBosque - IFPA Itaituba">
+        <svg viewBox="0 0 100 100" width="100%" height="100%">
+            <circle cx="50" cy="50" r="48" fill="#e8f5e9" stroke="#008744" stroke-width="3"/>
+            <path d="M50 20 Q35 45 42 70 Q50 82 58 70 Q65 45 50 20Z" fill="#008744"/>
+            <circle cx="50" cy="42" r="10" fill="#ffffff"/>
+            <text x="50" y="88" font-size="11" font-weight="bold" fill="#005a2b" text-anchor="middle">BIOBOSQUE</text>
+        </svg>
+    </div>
     <div class="header-texto-box">
         <h1>BIOBOSQUE</h1>
         <p>Monitoramento Florestal e de Educação Ambiental — Bosque do IFPA Campus Itaituba</p>
@@ -307,7 +342,7 @@
                 <input type="hidden" id="reg-id" value="">
                 <div class="formulario-grupo">
                     <label>Coordenadas Fixadas:</label>
-                    <input type="text" id="reg-coords" placeholder="Lat, Lng (obtidou via clique no mapa, GPS ou busca)" onchange="atualizarMapaViaInput(this.value)">
+                    <input type="text" id="reg-coords" placeholder="Lat, Lng (obtido via clique no mapa, GPS ou busca)" onchange="atualizarMapaViaInput(this.value)">
                 </div>
                 <div class="formulario-grupo"><label>Nome Popular:</label><input type="text" id="reg-nome" placeholder="Ex: Sumaúba"></div>
                 <div class="formulario-grupo"><label>Nome Científico:</label><input type="text" id="reg-cientifico" placeholder="Ex: Ceiba pentandra"></div>
@@ -354,14 +389,20 @@
             <h2>🖨️ Emissão de Laudos e Placas QR</h2>
             <select id="seletor-laudos" onchange="atualizarLaudo(this.value)" style="width:100%; padding:12px; margin-bottom:15px; border-radius:6px; font-weight:bold;"></select>
             
-            <!-- PLACA / LAUDO COM A SUA LOGO EMBUTIDA -->
+            <!-- BLOCO DE LAUDO / PLACA COM LOGO VETORIAL -->
             <div class="bloco-laudo">
                 <div class="cabecalho-laudo-placa">
                     <div>
                         <p style="font-size: 18px; font-weight: bold; color: var(--verde-escuro);">FICHA DE IDENTIFICAÇÃO BOTÂNICA</p>
                         <p style="font-size: 11px; color: #008744; font-weight: bold; text-transform: uppercase;">BioBosque • IFPA Campus Itaituba</p>
                     </div>
-                    <img src="" class="logo-laudo-mini" alt="Logo BioBosque" id="logo-laudo">
+                    <div class="logo-laudo-mini" title="BioBosque">
+                        <svg viewBox="0 0 100 100" width="100%" height="100%">
+                            <circle cx="50" cy="50" r="48" fill="#e8f5e9" stroke="#008744" stroke-width="3"/>
+                            <path d="M50 20 Q35 45 42 70 Q50 82 58 70 Q65 45 50 20Z" fill="#008744"/>
+                            <circle cx="50" cy="42" r="10" fill="#ffffff"/>
+                        </svg>
+                    </div>
                 </div>
                 
                 <div class="flex-laudo">
@@ -419,30 +460,6 @@
 
 <script src="https://static.elfsight.com/platform/platform.js" async></script>
 <script>
-    // Converte a imagem enviada para Base64 nativa para nunca dar erro de arquivo não encontrado
-    const logoBase64Oficial = "Gemini_Generated_Image_t6dqypt6dqypt6dq_2.jpeg"; // Substituída dinamicamente no carregamento abaixo por segurança
-
-    document.addEventListener("DOMContentLoaded", function() {
-        // Atribui a logo oficial automaticamente nos elementos de imagem
-        const imgHeader = document.getElementById('logo-header');
-        const imgLaudo = document.getElementById('logo-laudo');
-        
-        // Se você tiver o arquivo na mesma pasta, use o nome dele. Se preferir colar o arquivo físico, funcionará direto.
-        const caminhoLogo = "Gemini_Generated_Image_t6dqypt6dqypt6dq_2.jpeg";
-        if(imgHeader) imgHeader.src = caminhoLogo;
-        if(imgLaudo) imgLaudo.src = caminhoLogo;
-
-        inicializarPontosCarrossel();
-        mostrarSlides(slideIndex);
-        mostrarSlidesPreservacao(slidePresIndex);
-        inicializarMapasSatellites();
-        conectarEouvirFirebase();
-        
-        document.getElementById('input-camera').addEventListener('change', processarMidiaDispositivo);
-        setInterval(() => mudarSlide(1), 5000);
-        setInterval(() => mudarSlidePreservacao(1), 4000);
-    });
-
     const listaInicialBase = [
         { id: 1, nome: "Acácia", cientifico: "Acacia mangium", familia: "Fabaceae", coord: "-4.22235, -56.00107", notas: "Árvore de rápido crescimento, amplamente utilizada para recuperação de solos degradados, fixação de nitrogênio e proteção de encostas.", foto: [] },
         { id: 2, nome: "Cacau Selvagem", cientifico: "Theobroma speciosum", familia: "Malvaceae", coord: "-4.22033, -55.99903", notas: "Espécie nativa do sub-bosque denso. Antecessora silvestre do cacau comercial, possui altíssimo valor para a preservação da biodiversidade genética regional.", foto: [] },
@@ -470,6 +487,18 @@
     let mapaPrincipal, mapaCadastro, marcadorCadastro;
     let camadaMarcadores;
     let fotoBase64Temporaria = [];
+
+    document.addEventListener("DOMContentLoaded", function() {
+        inicializarPontosCarrossel();
+        mostrarSlides(slideIndex);
+        mostrarSlidesPreservacao(slidePresIndex);
+        inicializarMapasSatellites();
+        conectarEouvirFirebase();
+        
+        document.getElementById('input-camera').addEventListener('change', processarMidiaDispositivo);
+        setInterval(() => mudarSlide(1), 5000);
+        setInterval(() => mudarSlidePreservacao(1), 4000);
+    });
 
     function conectarEouvirFirebase() {
         const checarConexao = setInterval(() => {
@@ -755,309 +784,4 @@
     }
 
     function processarMidiaDispositivo(e) {
-        const files = Array.from(e.target.files);
-        if (!files.length) return;
-
-        files.forEach(file => {
-            EXIF.getData(file, function() {
-                const latData = EXIF.getTag(this, "GPSLatitude");
-                const latRef = EXIF.getTag(this, "GPSLatitudeRef");
-                const lonData = EXIF.getTag(this, "GPSLongitude");
-                const lonRef = EXIF.getTag(this, "GPSLongitudeRef");
-
-                if (latData && lonData && latRef && lonRef) {
-                    const lat = converterDMSParaDecimal(latData, latRef);
-                    const lng = converterDMSParaDecimal(lonData, lonRef);
-                    atualizarPontoMapa(lat, lng);
-                } else {
-                    obterGPSDispositivo(false);
-                }
-            });
-
-            const reader = new FileReader();
-            reader.onload = function(evt) {
-                fotoBase64Temporaria.push(evt.target.result);
-                renderizarPreviewEvidencias();
-            };
-            reader.readAsDataURL(file);
-        });
-    }
-
-    function converterDMSParaDecimal(dms, ref) {
-        let decimal = dms[0] + dms[1] / 60 + dms[2] / 3600;
-        return (ref === "S" || ref === "W") ? -decimal : decimal;
-    }
-
-    function obterGPSDispositivo(alertaFalha = true) {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (pos) => {
-                    atualizarPontoMapa(pos.coords.latitude, pos.coords.longitude);
-                },
-                (erro) => {
-                    if (alertaFalha) {
-                        alert("Não foi possível acessar seu GPS. Verifique a permissão do navegador ou pesquise o local no campo de busca.");
-                    }
-                },
-                { enableHighAccuracy: true, timeout: 10000 }
-            );
-        } else if (alertaFalha) {
-            alert("Navegador sem suporte a Geolocalização. Use a busca ou selecione diretamente no mapa.");
-        }
-    }
-
-    function buscarEnderecoMapa() {
-        const query = document.getElementById('campo-busca-endereco').value;
-        if (!query.trim()) return;
-
-        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data && data.length > 0) {
-                    const lat = parseFloat(data[0].lat);
-                    const lon = parseFloat(data[0].lon);
-                    atualizarPontoMapa(lat, lon);
-                } else {
-                    alert("Localização não encontrada. Tente buscar informando a cidade/região.");
-                }
-            })
-            .catch(() => alert("Erro ao buscar a localização. Tente novamente."));
-    }
-
-    function atualizarPontoMapa(lat, lng) {
-        const latFixed = parseFloat(lat).toFixed(6);
-        const lngFixed = parseFloat(lng).toFixed(6);
-        const coordStr = `${latFixed}, ${lngFixed}`;
-        const latlng = [parseFloat(latFixed), parseFloat(lngFixed)];
-
-        document.getElementById('reg-coords').value = coordStr;
-        mapaCadastro.setView(latlng, 18);
-
-        if (marcadorCadastro) {
-            marcadorCadastro.setLatLng(latlng);
-        } else {
-            marcadorCadastro = L.marker(latlng, { draggable: true }).addTo(mapaCadastro);
-            marcadorCadastro.on('dragend', function(ev) {
-                const pos = ev.target.getLatLng();
-                document.getElementById('reg-coords').value = `${pos.lat.toFixed(6)}, ${pos.lng.toFixed(6)}`;
-            });
-        }
-    }
-
-    function atualizarMapaViaInput(valor) {
-        const partes = valor.split(',');
-        if (partes.length === 2) {
-            const lat = parseFloat(partes[0].trim());
-            const lng = parseFloat(partes[1].trim());
-            if (!isNaN(lat) && !isNaN(lng)) {
-                atualizarPontoMapa(lat, lng);
-            }
-        }
-    }
-
-    function renderizarPreviewEvidencias() {
-        const container = document.getElementById('container-evidencia');
-        const preview = document.getElementById('espaco-preview');
-        preview.innerHTML = "";
-
-        if (fotoBase64Temporaria && fotoBase64Temporaria.length > 0) {
-            container.style.display = "block";
-            fotoBase64Temporaria.forEach(src => {
-                const isVideo = src.startsWith('data:video') || src.endsWith('.mp4');
-                let elem;
-                if (isVideo) {
-                    elem = document.createElement('video');
-                    elem.src = src;
-                } else {
-                    elem = document.createElement('img');
-                    elem.src = src;
-                }
-                elem.className = 'preview-media-capturada';
-                preview.appendChild(elem);
-            });
-        } else {
-            container.style.display = "none";
-        }
-    }
-
-    function salvarItemArboreto() {
-        const idCampo = document.getElementById('reg-id').value;
-        const coords = document.getElementById('reg-coords').value;
-        const nome = document.getElementById('reg-nome').value;
-        const cientifico = document.getElementById('reg-cientifico').value;
-        const familia = document.getElementById('reg-familia').value;
-        const notas = document.getElementById('reg-caract').value;
-
-        if (!nome || !coords) {
-            alert("Por favor, informe ao menos o Nome Popular e as Coordenadas.");
-            return;
-        }
-
-        let novoId = idCampo ? parseInt(idCampo) : (dadosArvores.length > 0 ? Math.max(...dadosArvores.map(a => a.id)) + 1 : 1);
-
-        const objetoArvore = {
-            id: novoId,
-            nome: nome,
-            cientifico: cientifico || "--",
-            familia: familia || "--",
-            coord: coords,
-            notas: notas || "--",
-            foto: fotoBase64Temporaria || []
-        };
-
-        if (window.dbFirebase && window.refFirebase && window.setFirebase) {
-            window.setFirebase(window.refFirebase(window.dbFirebase, 'arvores/id_' + novoId), objetoArvore);
-        }
-
-        limparFormulario();
-        alert("Registro salvo com sucesso no Arboreto!");
-    }
-
-    function limparFormulario() {
-        document.getElementById('titulo-formulario').textContent = "📋 Dados de Inventário";
-        document.getElementById('reg-id').value = "";
-        document.getElementById('reg-coords').value = "";
-        document.getElementById('reg-nome').value = "";
-        document.getElementById('reg-cientifico').value = "";
-        document.getElementById('reg-familia').value = "";
-        document.getElementById('reg-caract').value = "";
-        fotoBase64Temporaria = [];
-        renderizarPreviewEvidencias();
-        if (marcadorCadastro) {
-            mapaCadastro.removeLayer(marcadorCadastro);
-            marcadorCadastro = null;
-        }
-    }
-
-    function atualizarLaudo(id) {
-        const item = dadosArvores.find(a => a.id == id);
-        if (!item) return;
-
-        document.getElementById('ld-nome').textContent = item.nome;
-        document.getElementById('ld-cie').textContent = item.cientifico;
-        document.getElementById('ld-fam').textContent = item.familia;
-        document.getElementById('ld-coord').textContent = item.coord;
-        document.getElementById('ld-notes').textContent = item.notas;
-
-        const containerFoto = document.getElementById('ld-container-foto');
-        containerFoto.innerHTML = "";
-        if (item.foto && item.foto.length > 0) {
-            const primeira = item.foto[0];
-            const isVideo = primeira.startsWith('data:video') || primeira.endsWith('.mp4');
-            let elem;
-            if (isVideo) {
-                elem = document.createElement('video');
-                elem.src = primeira;
-                elem.controls = true;
-            } else {
-                elem = document.createElement('img');
-                elem.src = primeira;
-            }
-            containerFoto.appendChild(elem);
-        } else {
-            containerFoto.innerHTML = '<div class="sem-foto-texto">Sem registro fotográfico</div>';
-        }
-
-        const qrContainer = document.getElementById('qrcode');
-        qrContainer.innerHTML = "";
-        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.coord)}`;
-        
-        new QRCode(qrContainer, {
-            text: mapsUrl,
-            width: 120,
-            height: 120,
-            correctLevel: QRCode.CorrectLevel.H
-        });
-    }
-
-    function imprimirPlacaEspecifica() {
-        window.print();
-    }
-
-    function inicializarPontosCarrossel() {
-        const container = document.getElementById('container-pontinhos');
-        container.innerHTML = "";
-        fotosArray.forEach((_, idx) => {
-            const dot = document.createElement('span');
-            dot.className = 'ponto';
-            dot.onclick = () => mostrarSlides(slideIndex = idx + 1);
-            container.appendChild(dot);
-        });
-    }
-
-    function mudarSlide(n) {
-        mostrarSlides(slideIndex += n);
-    }
-
-    function mostrarSlides(n) {
-        const slides = document.getElementsByClassName("meu-slide");
-        const pontos = document.getElementsByClassName("ponto");
-        
-        if (slides.length === 0) return;
-        
-        if (n > slides.length) slideIndex = 1;
-        if (n < 1) slideIndex = slides.length;
-
-        for (let i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (let i = 0; i < pontos.length; i++) {
-            pontos[i].className = pontos[i].className.replace(" active", "");
-        }
-
-        slides[slideIndex - 1].style.display = "block";
-        if (pontos[slideIndex - 1]) {
-            pontos[slideIndex - 1].className += " active";
-        }
-    }
-
-    function mudarSlidePreservacao(n) {
-        mostrarSlidesPreservacao(slidePresIndex += n);
-    }
-
-    function mostrarSlidesPreservacao(n) {
-        const slides = document.getElementsByClassName("slide-pres");
-        if (slides.length === 0) return;
-
-        if (n > slides.length) slidePresIndex = 1;
-        if (n < 1) slidePresIndex = slides.length;
-
-        for (let i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        slides[slidePresIndex - 1].style.display = "block";
-    }
-
-    function abrirLightboxCinema(idx) {
-        lightboxIndex = idx;
-        const modal = document.getElementById('lb-modal');
-        const container = document.getElementById('lb-midia-container');
-        const legenda = document.getElementById('lb-legenda');
-
-        const midiaUrl = fotosArray[lightboxIndex];
-        const isVid = midiaUrl.startsWith('data:video') || midiaUrl.endsWith('.mp4');
-
-        if (isVid) {
-            container.innerHTML = `<video id="lb-img" src="${midiaUrl}" controls autoplay></video>`;
-        } else {
-            container.innerHTML = `<img id="lb-img" src="${midiaUrl}" alt="Ampliado">`;
-        }
-
-        legenda.textContent = legendasArray[lightboxIndex];
-        modal.style.display = "flex";
-    }
-
-    function fecharLightboxCinema() {
-        document.getElementById('lb-modal').style.display = "none";
-    }
-
-    function navegarLightbox(n) {
-        lightboxIndex += n;
-        if (lightboxIndex >= fotosArray.length) lightboxIndex = 0;
-        if (lightboxIndex < 0) lightboxIndex = fotosArray.length - 1;
-
-        abrirLightboxCinema(lightboxIndex);
-    }
-</script>
-</body>
-</html>
+        const files = Array.from(e.target.
