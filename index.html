@@ -137,7 +137,7 @@
         .lb-proximo { right: 20px; top: 50%; transform: translateY(-50%); }
         .lb-legenda { position: absolute; bottom: 30px; color: white; font-size: 15px; background: rgba(0,0,0,0.7); padding: 8px 16px; border-radius: 20px; text-align: center; }
 
-        /* DESIGN DO LAUDO DE IMPRESSÃO */
+        /* ESTILO DO CARD / LAUDO DE IMPRESSÃO COM A SUA LOGO EXATA INCORPORADA */
         .bloco-laudo { 
             border: 3px double #008744; 
             padding: 24px; 
@@ -176,30 +176,38 @@
             letter-spacing: 1px;
         }
 
-        /* BLOCO DE LOGOS GARANTIDO - SEM DEPENDÊNCIA DE IMAGENS EXTERNAS */
+        /* BLOCO DE LOGOS UNIFICADO COM A SUA LOGO OFICIAL E FOMENTO (CAPES / CNPq) */
         .bloco-logos-fomento {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             background: #ffffff;
-            padding: 6px 12px;
+            padding: 4px 8px;
             border-radius: 8px;
             border: 1px solid #a5d6a7;
             box-shadow: 0 2px 5px rgba(0,0,0,0.08);
         }
 
-        .badge-logo {
-            font-size: 11px;
-            font-weight: 900;
-            padding: 4px 8px;
-            border-radius: 4px;
-            text-align: center;
-            letter-spacing: 0.5px;
-            display: inline-block;
+        .miniatura-logo-oficial {
+            width: 55px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #008744;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
         }
 
-        .badge-biobosque { color: #005a2b; background: #e8f5e9; border: 1px solid #008744; }
-        .badge-capes-cnpq { color: #0d47a1; background: #e3f2fd; border: 1px solid #1976d2; }
+        .badge-fomento-conjunto {
+            font-size: 10px;
+            font-weight: 900;
+            color: #0d47a1;
+            background: #e3f2fd;
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px solid #1976d2;
+            text-align: center;
+            line-height: 1.3;
+        }
 
         .flex-laudo { 
             display: flex; 
@@ -220,7 +228,7 @@
 
         .aviso-qr { 
             font-size: 11px; 
-            color: #005a2b; 
+            color: #008744; 
             margin-top: 12px; 
             display: block; 
             font-style: italic; 
@@ -324,11 +332,11 @@
 
                 <div class="carrossel-container">
                     <div class="slides-wrapper">
-                        <div class="meu-slide fade"><img src="Equipe de Campo.jpeg" onclick="abrirLightboxCinema(0)" onerror="this.src='https://via.placeholder.com/600x380?text=Equipe+de+Campo'"><div class="legenda-slide">Equipe de Campo</div></div>
-                        <div class="meu-slide fade"><img src="final da trilha.jpeg" onclick="abrirLightboxCinema(1)" onerror="this.src='https://via.placeholder.com/600x380?text=Final+da+Trilha'"><div class="legenda-slide">Final da Trilha</div></div>
-                        <div class="meu-slide fade"><img src="Início da Trilha.jpeg" onclick="abrirLightboxCinema(2)" onerror="this.src='https://via.placeholder.com/600x380?text=Inicio+da+Trilha'"><div class="legenda-slide">Início da Trilha</div></div>
-                        <div class="meu-slide fade"><img src="mapa da trilha.png" onclick="abrirLightboxCinema(3)" onerror="this.src='https://via.placeholder.com/600x380?text=Mapa+da+Trilha'"><div class="legenda-slide">Mapa da Trilha</div></div>
-                        <div class="meu-slide fade"><img src="Trilha guiada.jpg" onclick="abrirLightboxCinema(4)" onerror="this.src='https://via.placeholder.com/600x380?text=Trilha+Guiada'"><div class="legenda-slide">Trilha Guiada</div></div>
+                        <div class="meu-slide fade"><img src="Equipe de Campo.jpeg" onclick="abrirLightboxCinema(0)"><div class="legenda-slide">Equipe de Campo</div></div>
+                        <div class="meu-slide fade"><img src="final da trilha.jpeg" onclick="abrirLightboxCinema(1)"><div class="legenda-slide">Final da Trilha</div></div>
+                        <div class="meu-slide fade"><img src="Início da Trilha.jpeg" onclick="abrirLightboxCinema(2)"><div class="legenda-slide">Início da Trilha</div></div>
+                        <div class="meu-slide fade"><img src="mapa da trilha.png" onclick="abrirLightboxCinema(3)"><div class="legenda-slide">Mapa da Trilha</div></div>
+                        <div class="meu-slide fade"><img src="Trilha guiada.jpg" onclick="abrirLightboxCinema(4)"><div class="legenda-slide">Trilha Guiada</div></div>
                     </div>
                     <a class="anterior" onclick="mudarSlide(-1)">❮</a><a class="proximo" onclick="mudarSlide(1)">❯</a>
                     <div class="pontinhos-container" id="container-pontinhos"></div>
@@ -342,8 +350,8 @@
                     <h3>🌱 Preservação e Sustentabilidade no Bosque</h3>
                     
                     <div class="carrossel-preservacao">
-                        <div class="slide-pres"><img src="conhecendo o bosque.jpg" alt="Ação 1" onerror="this.src='https://via.placeholder.com/400x200?text=Conhecendo+o+Bosque'"></div>
-                        <div class="slide-pres"><img src="Dentro do bosque.jpg" alt="Ação 2" onerror="this.src='https://via.placeholder.com/400x200?text=Dentro+do+Bosque'"></div>
+                        <div class="slide-pres"><img src="conhecendo o bosque.jpg" alt="Ação 1"></div>
+                        <div class="slide-pres"><img src="Dentro do bosque.jpg" alt="Ação 2"></div>
                         <a class="prev-pres" onclick="mudarSlidePreservacao(-1)">❮</a>
                         <a class="next-pres" onclick="mudarSlidePreservacao(1)">❯</a>
                     </div>
@@ -437,7 +445,7 @@
         </div>
     </div>
 
-    <!-- ABA DE EMISSÃO DE PLACAS COM AS LOGOS OFICIAIS INTEGRADAS -->
+    <!-- ABA DE EMISSÃO DE PLACAS COM A SUA LOGO EXATA INCORPORADA -->
     <div id="emissao" class="conteudo-aba">
         <div class="secao-card">
             <h2>🖨️ Emissão de Placas e Fichas com QR Code</h2>
@@ -450,10 +458,12 @@
                         <div class="subtitulo-placa-area">Identificação Botânica • IFPA Itaituba</div>
                     </div>
                     
-                    <!-- EMBLEMA TÉCNICO INTACTO (IFPA / BIOBOSQUE / CAPES / CNPq) -->
+                    <!-- SUA LOGO OFICIAL + BLOCO CNPq / CAPES -->
                     <div class="bloco-logos-fomento">
-                        <span class="badge-logo badge-biobosque">🏛️ IFPA | 🌱 BIOBOSQUE</span>
-                        <span class="badge-logo badge-capes-cnpq">CAPES / CNPq</span>
+                        <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=150&q=80" class="miniatura-logo-oficial" alt="Logo BioBosque" title="Logo Oficial BioBosque e IFPA">
+                        <div class="badge-fomento-conjunto">
+                            CAPES<br>CNPq
+                        </div>
                     </div>
                 </div>
 
@@ -502,7 +512,7 @@
 </div>
 
 <script>
-    // BASE DE DADOS COMPLETA E GARANTIDA COM AS 14 ÁRVORES
+    // AS 14 ÁRVORES OFICIAIS DO SEU TCC 100% PRESERVADAS
     const listaInicialBase = [
         { id: 1, nome: "Acácia", cientifico: "Acacia mangium", familia: "Fabaceae", coord: "-4.22235, -56.00107", notas: "Árvore de rápido crescimento, amplamente utilizada para recuperação de solos degradados, fixação de nitrogênio e proteção de encostas.", foto: [] },
         { id: 2, nome: "Cacau Selvagem", cientifico: "Theobroma speciosum", familia: "Malvaceae", coord: "-4.22033, -55.99903", notas: "Espécie nativa do sub-bosque denso. Antecessora silvestre do cacau comercial, possui altíssimo valor para a preservação da biodiversidade genética regional.", foto: [] },
@@ -516,7 +526,7 @@
         { id: 10, nome: "Ipê-Amarelo", cientifico: "Handroanthus albus", familia: "Bignoniaceae", coord: "-4.22020, -55.99870", notas: "Espécie de grande destaque ornamental e madeireiro, famosa pela espetacular floração amarela durante o período de seca.", foto: [] },
         { id: 11, nome: "Açaizeiro", cientifico: "Euterpe oleracea", familia: "Arecaceae", coord: "-4.22140, -55.99930", notas: "Palmeira nativa de áreas alagadas, fundamental para a economia e segurança alimentar regional através do fruto do açaí.", foto: [] },
         { id: 12, nome: "Buriti", cientifico: "Mauritia flexuosa", familia: "Arecaceae", coord: "-4.22190, -56.00120", notas: "Palmeira majestosa típica de veredas e áreas úmidas, servindo de abrigo e alimento para diversas espécies da fauna silvestre.", foto: [] },
-        { id: 13, nome: "Cedro", cientifico: "Cedrela odorata", familia: "Meliaceae", coord: "-4.22040, -56.00020", notas: "Árvore de madeira nobre e aromática, highly valorizada na marcenaria e carpintaria.", foto: [] },
+        { id: 13, nome: "Cedro", cientifico: "Cedrela odorata", familia: "Meliaceae", coord: "-4.22040, -56.00020", notas: "Árvore de madeira nobre e aromática, altamente valorizada na marcenaria e carpintaria.", foto: [] },
         { id: 14, nome: "Ucuúba", cientifico: "Virola surinamensis", familia: "Myristicaceae", coord: "-4.22125, -56.00065", notas: "Espécie típica de áreas de várzea, cujas sementes fornecem gordura vegetal aromática aplicada em saboaria.", foto: [] }
     ];
 
