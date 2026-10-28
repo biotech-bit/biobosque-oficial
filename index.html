@@ -26,9 +26,13 @@
         
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background-color: #f1f3f5; color: var(--texto-escuro); min-height: 100vh; display: flex; flex-direction: column; }
-        header { background: linear-gradient(135deg, var(--verde-institucional), var(--verde-escuro)); color: var(--branco); text-align: center; padding: 15px 20px; box-shadow: 0 3px 10px rgba(0,0,0,0.15); }
+        
+        /* HEADER COM A SUA LOGO DO BIOBOSQUE */
+        header { background: linear-gradient(135deg, var(--verde-institucional), var(--verde-escuro)); color: var(--branco); padding: 15px 20px; box-shadow: 0 3px 10px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; gap: 20px; }
+        .logo-header-img { width: 65px; height: 65px; object-fit: cover; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+        .header-texto-box { text-align: left; }
         header h1 { font-size: 24px; font-weight: 700; letter-spacing: 1px; }
-        header p { font-size: 14px; opacity: 0.9; margin-top: 4px; }
+        header p { font-size: 14px; opacity: 0.9; margin-top: 2px; }
 
         .container { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
         
@@ -63,7 +67,7 @@
         .ponto { cursor: pointer; height: 10px; width: 10px; margin: 0 5px; background-color: #555; border-radius: 50%; display: inline-block; transition: 0.3s; }
         .ponto.active { background-color: var(--branco); transform: scale(1.2); }
         
-        /* Carrossel Interno da Preservação */
+        /* Novo Carrossel Interno da Preservação */
         .carrossel-preservacao { position: relative; width: 100%; height: 200px; margin-bottom: 15px; border-radius: 6px; overflow: hidden; background: #111; }
         .slide-pres { display: none; width: 100%; height: 100%; position: relative; }
         .slide-pres img { width: 100%; height: 100%; object-fit: cover; }
@@ -137,172 +141,64 @@
         .lb-proximo { right: 20px; top: 50%; transform: translateY(-50%); }
         .lb-legenda { position: absolute; bottom: 30px; color: white; font-size: 15px; background: rgba(0,0,0,0.7); padding: 8px 16px; border-radius: 20px; text-align: center; }
 
-        /* ESTILO DO CARD / LAUDO DE IMPRESSÃO COM A SUA LOGO EXATA INCORPORADA */
-        .bloco-laudo { 
-            border: 3px double #008744; 
-            padding: 24px; 
-            border-radius: 12px; 
-            background: #ffffff; 
-            margin-top: 15px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            position: relative;
-        }
-
-        .cabecalho-placa-institucional {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #008744;
-            padding-bottom: 12px;
-            margin-bottom: 18px;
-            background: linear-gradient(to right, #f4fbf7, #ffffff);
-            padding: 10px 15px;
-            border-radius: 8px;
-        }
-
-        .titulo-placa-area h3 {
-            color: #005a2b;
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            margin-bottom: 2px;
-        }
-
-        .subtitulo-placa-area {
-            color: #008744;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* BLOCO DE LOGOS UNIFICADO COM A SUA LOGO OFICIAL E FOMENTO (CAPES / CNPq) */
-        .bloco-logos-fomento {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: #ffffff;
-            padding: 4px 8px;
-            border-radius: 8px;
-            border: 1px solid #a5d6a7;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-        }
-
-        .miniatura-logo-oficial {
-            width: 55px;
-            height: 55px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid #008744;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-        }
-
-        .badge-fomento-conjunto {
-            font-size: 10px;
-            font-weight: 900;
-            color: #0d47a1;
-            background: #e3f2fd;
-            padding: 6px 10px;
-            border-radius: 6px;
-            border: 1px solid #1976d2;
-            text-align: center;
-            line-height: 1.3;
-        }
-
-        .flex-laudo { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: flex-start; 
-            gap: 20px; 
-        }
-
-        .info-detalhe-p {
-            font-size: 14px;
-            margin-bottom: 8px;
-            color: #222;
-        }
-
-        .info-detalhe-p strong {
-            color: #005a2b;
-        }
-
-        .aviso-qr { 
-            font-size: 11px; 
-            color: #008744; 
-            margin-top: 12px; 
-            display: block; 
-            font-style: italic; 
-            line-height: 1.4; 
-            background: #e8f5e9;
-            padding: 8px;
-            border-radius: 6px;
-            border-left: 3px solid #008744;
-        }
-
-        #qrcode { 
-            min-width: 130px; 
-            min-height: 130px; 
-            background: #fff; 
-            padding: 6px; 
-            border: 2px solid #008744; 
-            border-radius: 8px;
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-
-        #qrcode img, .qr-herbario-box img {
-            display: block !important;
-            width: 100% !important;
-            height: auto !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-
-        .bloco-foto-laudo { 
-            width: 140px; 
-            height: 140px; 
-            border: 2px solid #008744; 
-            border-radius: 8px; 
-            background: #f8f9fa; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            overflow: hidden; 
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-
-        .bloco-foto-laudo img, .bloco-foto-laudo video { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-        }
-
-        .sem-foto-texto { 
-            font-size: 11px; 
-            color: #888; 
-            text-align: center; 
-            padding: 5px; 
-            font-style: italic; 
-        }
+        /* BLOCO DE LAUDO / PLACA COM A SUA LOGO INTEGRADA */
+        .bloco-laudo { border: 2px solid #008744; padding: 20px; border-radius: 8px; background: white; margin-top: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .cabecalho-laudo-placa { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #008744; padding-bottom: 10px; margin-bottom: 12px; }
+        .logo-laudo-mini { width: 50px; height: 50px; object-fit: cover; border-radius: 50%; border: 2px solid #008744; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        
+        .flex-laudo { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+        .aviso-qr { font-size: 11px; color: #555; margin-top: 8px; display: block; font-style: italic; line-height: 1.4; }
+        #qrcode { min-width: 120px; min-height: 120px; background: #fff; padding: 5px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; }
+        
+        .bloco-foto-laudo { width: 140px; height: 140px; border: 1px solid #ccc; border-radius: 6px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .bloco-foto-laudo img, .bloco-foto-laudo video { width: 100%; height: 100%; object-fit: cover; }
+        .sem-foto-texto { font-size: 11px; color: #999; text-align: center; padding: 5px; font-style: italic; }
 
         @media print {
             body * { visibility: hidden !important; }
             #emissao, #emissao .secao-card, .bloco-laudo, .bloco-laudo * { visibility: visible !important; }
             #emissao { position: absolute !important; left: 0 !important; top: 0 !important; width: 100% !important; }
             header, .abas-menu, #seletor-laudos, .btn-acao, .aviso-qr, .canais-comunidade { display: none !important; }
-            .bloco-laudo { border: 2px solid #000 !important; padding: 20px !important; margin: 0 !important; background: #fff !important; box-shadow: none !important; }
+            .bloco-laudo { border: 2px solid #000 !important; padding: 20px !important; margin: 0 !important; background: #fff !important; }
             .flex-laudo { display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: flex-start !important; }
             #qrcode canvas, .qr-herbario-box canvas { display: none !important; }
             #qrcode img, .qr-herbario-box img { display: block !important; visibility: visible !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
         }
     </style>
+    
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAsxF_fKIhOmSr8SsuFxZbXwiCgj5c7qxg",
+            authDomain: "biobosque-oficial.firebaseapp.com",
+            projectId: "biobosque-oficial",
+            storageBucket: "biobosque-oficial.appspot.com",
+            messagingSenderId: "888631935429",
+            appId: "1:888631935429:web:a1ad2714da26c233cacbac",
+            measurementId: "G-TP1ZB9ZXMK"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        window.dbFirebase = db;
+        window.refFirebase = ref;
+        window.setFirebase = set;
+        window.onValueFirebase = onValue;
+        window.removeFirebase = remove;
+    </script>
 </head>
 <body>
 
+<!-- HEADER COM A SUA LOGO OFICIAL DO BIOBOSQUE -->
 <header>
-    <h1>BIOBOSQUE</h1>
-    <p>Monitoramento Florestal e de Educação Ambiental — Bosque do IFPA Campus Itaituba</p>
+    <img src="Gemini_Generated_Image_t6dqypt6dqypt6dq_2.jpeg" class="logo-header-img" alt="Logo BioBosque">
+    <div class="header-texto-box">
+        <h1>BIOBOSQUE</h1>
+        <p>Monitoramento Florestal e de Educação Ambiental — Bosque do IFPA Campus Itaituba</p>
+    </div>
 </header>
 
 <div class="container">
@@ -332,11 +228,16 @@
 
                 <div class="carrossel-container">
                     <div class="slides-wrapper">
-                        <div class="meu-slide fade"><img src="Equipe de Campo.jpeg" onclick="abrirLightboxCinema(0)"><div class="legenda-slide">Equipe de Campo</div></div>
-                        <div class="meu-slide fade"><img src="final da trilha.jpeg" onclick="abrirLightboxCinema(1)"><div class="legenda-slide">Final da Trilha</div></div>
-                        <div class="meu-slide fade"><img src="Início da Trilha.jpeg" onclick="abrirLightboxCinema(2)"><div class="legenda-slide">Início da Trilha</div></div>
-                        <div class="meu-slide fade"><img src="mapa da trilha.png" onclick="abrirLightboxCinema(3)"><div class="legenda-slide">Mapa da Trilha</div></div>
-                        <div class="meu-slide fade"><img src="Trilha guiada.jpg" onclick="abrirLightboxCinema(4)"><div class="legenda-slide">Trilha Guiada</div></div>
+                        <div class="meu-slide fade"><img src="Equipe%20de%20Campo.jpeg" onclick="abrirLightboxCinema(0)"><div class="legenda-slide">Equipe de Campo</div></div>
+                        <div class="meu-slide fade"><img src="final%20da%20trilha.jpeg" onclick="abrirLightboxCinema(1)"><div class="legenda-slide">Final da Trilha</div></div>
+                        <div class="meu-slide fade"><img src="In%C3%ADcio%20da%20Trilha.jpeg" onclick="abrirLightboxCinema(2)"><div class="legenda-slide">Início da Trilha</div></div>
+                        <div class="meu-slide fade"><img src="mapa%20da%20trilha.png" onclick="abrirLightboxCinema(3)"><div class="legenda-slide">Mapa da Trilha</div></div>
+                        <div class="meu-slide fade"><img src="Trilha%20guiada.jpg" onclick="abrirLightboxCinema(4)"><div class="legenda-slide">Trilha Guiada</div></div>
+                        <div class="meu-slide fade"><img src="acompanhamento%20tecnico.jpg" onclick="abrirLightboxCinema(5)"><div class="legenda-slide">Acompanhamento Técnico</div></div>
+                        <div class="meu-slide fade"><img src="ambienta%C3%A7ao.jpg" onclick="abrirLightboxCinema(6)"><div class="legenda-slide">Ambientação</div></div>
+                        <div class="meu-slide fade"><img src="conhecendo%20o%20bosque.jpg" onclick="abrirLightboxCinema(7)"><div class="legenda-slide">Conhecendo o Bosque</div></div>
+                        <div class="meu-slide fade"><img src="Dentro%20do%20bosque.jpg" onclick="abrirLightboxCinema(8)"><div class="legenda-slide">Dentro do Bosque</div></div>
+                        <div class="meu-slide fade"><img src="Entrada%20do%20Bosque.jpeg" onclick="abrirLightboxCinema(9)"><div class="legenda-slide">Entrada ao Bosque</div></div>
                     </div>
                     <a class="anterior" onclick="mudarSlide(-1)">❮</a><a class="proximo" onclick="mudarSlide(1)">❯</a>
                     <div class="pontinhos-container" id="container-pontinhos"></div>
@@ -349,14 +250,17 @@
                 <div class="secao-preservacao">
                     <h3>🌱 Preservação e Sustentabilidade no Bosque</h3>
                     
+                    <!-- Novo Carrossel de Imagens Interno -->
                     <div class="carrossel-preservacao">
-                        <div class="slide-pres"><img src="conhecendo o bosque.jpg" alt="Ação 1"></div>
-                        <div class="slide-pres"><img src="Dentro do bosque.jpg" alt="Ação 2"></div>
+                        <div class="slide-pres"><img src="conhecendo%20o%20bosque.jpg" alt="Ação de Preservação 1"></div>
+                        <div class="slide-pres"><img src="Dentro%20do%20bosque.jpg" alt="Ação de Preservação 2"></div>
+                        <div class="slide-pres"><img src="ambienta%C3%A7ao.jpg" alt="Ação de Preservação 3"></div>
                         <a class="prev-pres" onclick="mudarSlidePreservacao(-1)">❮</a>
                         <a class="next-pres" onclick="mudarSlidePreservacao(1)">❯</a>
                     </div>
 
-                    <p>O Bosque da Ciência do IFPA Campus Itaituba configura-se como um fragmento florestal urbano de vital importância para a microrregião do Tapajós. A sua preservação e o monitoramento sistemático de suas espécies arbóreas atuam diretamente na manutenção de microclimas locais e proteção do solo.</p>
+                    <p>O Bosque da Ciência do IFPA Campus Itaituba configura-se como um fragmento florestal urbano de vital importância para a microrregião do Tapajós. A sua preservação e o monitoramento sistemático de suas espécies arbóreas atuam diretamente na manutenção de microclimas locais, proteção do solo contra erosões hídricas e abrigo para a avifauna regional.</p>
+                    <p style="margin-top: 8px;"><b>Compromisso Ecológico:</b> Mais do que um laboratório vivo para estudos biológicos e taxonômicos, salvaguardar este patrimônio natural fortalece a educação ambiental comunitária, mitigando os impactos da fragmentação de habitats e promovendo o desenvolvimento sustentável na Amazônia.</p>
                 </div>
             </div>
         </div>
@@ -365,6 +269,7 @@
             <h3>Canais Oficiais da Comunidade</h3>
             <div class="botoes-canais">
                 <a href="https://itaituba.ifpa.edu.br" target="_blank" class="btn-canal btn-portal">PORTAL IFPA</a>
+                <a href="https://itaituba.ifpa.edu.br" target="_blank" class="btn-canal btn-web">SITE INSTITUCIONAL</a>
                 <a href="https://www.instagram.com/biobosque_22" target="_blank" class="btn-canal btn-instagram">INSTAGRAM PROJETO</a>
                 <a href="https://www.instagram.com/ifpaitaitubaoficial" target="_blank" class="btn-canal btn-instagram btn-ifpa">INSTAGRAM IFPA CAMPUS</a>
             </div>
@@ -391,7 +296,7 @@
 
                 <div>
                     <div class="caixa-busca-mapa">
-                        <input type="text" id="campo-busca-endereco" placeholder="Pesquisar localidade..." onkeydown="if(event.key === 'Enter') buscarEnderecoMapa()">
+                        <input type="text" id="campo-busca-endereco" placeholder="Pesquisar localidade (ex: IFPA Itaituba, Rua X, Cidade)..." onkeydown="if(event.key === 'Enter') buscarEnderecoMapa()">
                         <button onclick="buscarEnderecoMapa()">🔍 Pesquisar</button>
                     </div>
                     <div id="map-cadastro"></div>
@@ -403,12 +308,12 @@
                 <input type="hidden" id="reg-id" value="">
                 <div class="formulario-grupo">
                     <label>Coordenadas Fixadas:</label>
-                    <input type="text" id="reg-coords" placeholder="Lat, Lng" onchange="atualizarMapaViaInput(this.value)">
+                    <input type="text" id="reg-coords" placeholder="Lat, Lng (obtidou via clique no mapa, GPS ou busca)" onchange="atualizarMapaViaInput(this.value)">
                 </div>
                 <div class="formulario-grupo"><label>Nome Popular:</label><input type="text" id="reg-nome" placeholder="Ex: Sumaúba"></div>
                 <div class="formulario-grupo"><label>Nome Científico:</label><input type="text" id="reg-cientifico" placeholder="Ex: Ceiba pentandra"></div>
                 <div class="formulario-grupo"><label>Família Botânica:</label><input type="text" id="reg-familia" placeholder="Ex: Malvaceae"></div>
-                <div class="formulario-grupo"><label>Descrição Taxonômica e Usos Históricos:</label><textarea id="reg-caract" rows="4" placeholder="Descrição da planta..."></textarea></div>
+                <div class="formulario-grupo"><label>Descrição Taxonômica e Usos Históricos:</label><textarea id="reg-caract" rows="4" placeholder="Ex: Árvore pioneira, vital para regeneração de áreas degradadas..."></textarea></div>
                 <button class="btn-acao" id="btn-salvar" onclick="salvarItemArboreto()">💾 COMPILAR REGISTRO NO ARBORETO</button>
             </div>
         </div>
@@ -417,7 +322,7 @@
     <div id="catalogo" class="conteudo-aba">
         <div class="secao-card">
             <h2>📊 Matriz de Dados Técnicos</h2>
-            <p style="font-size:12px; color:#666; margin-bottom:12px;">Lista completa de espécies catalogadas no Bosque do IFPA Itaituba.</p>
+            <p style="font-size:12px; color:#666; margin-bottom:12px;">Clique na linha da árvore para editar seus dados ou no botão vermelho para removê-la do sistema.</p>
             <div class="tabela-wrapper">
                 <table>
                     <thead>
@@ -426,7 +331,7 @@
                             <th>Nome Popular</th>
                             <th>Nome Científico</th>
                             <th>Família</th>
-                            <th>Descrição</th>
+                            <th>Descrição e Usos Bibliográficos</th>
                             <th>Coordenadas</th>
                             <th style="text-align: center;">Ação</th>
                         </tr>
@@ -440,62 +345,64 @@
     <div id="herbario" class="conteudo-aba">
         <div class="secao-card">
             <h2>🌿 Herbário Digital — Espécies Catalogadas</h2>
-            <p style="font-size: 14px; color: #555;">Catálogo visual interativo das plantas cadastradas no BioBosque com QR Codes.</p>
+            <p style="font-size: 14px; color: #555;">Catálogo visual interativo de todas as plantas cadastradas no BioBosque, com fotos, vídeos e QR Codes individuais.</p>
             <div id="grid-herbario" class="grid-galeria-plantas"></div>
         </div>
     </div>
 
-    <!-- ABA DE EMISSÃO DE PLACAS COM A SUA LOGO EXATA INCORPORADA -->
     <div id="emissao" class="conteudo-aba">
         <div class="secao-card">
-            <h2>🖨️ Emissão de Placas e Fichas com QR Code</h2>
-            <select id="seletor-laudos" onchange="atualizarLaudo(this.value)" style="width:100%; padding:12px; margin-bottom:15px; border-radius:6px; font-weight:bold; border:1px solid var(--verde-institucional);"></select>
+            <h2>🖨️ Emissão de Laudos e Placas QR</h2>
+            <select id="seletor-laudos" onchange="atualizarLaudo(this.value)" style="width:100%; padding:12px; margin-bottom:15px; border-radius:6px; font-weight:bold;"></select>
             
+            <!-- BLOCO DE LAUDO / PLACA COM A SUA LOGO INTEGRADA -->
             <div class="bloco-laudo">
-                <div class="cabecalho-placa-institucional">
-                    <div class="titulo-placa-area">
-                        <h3>BIOBOSQUE</h3>
-                        <div class="subtitulo-placa-area">Identificação Botânica • IFPA Itaituba</div>
+                <div class="cabecalho-laudo-placa">
+                    <div>
+                        <p style="font-size: 18px; font-weight: bold; color: var(--verde-escuro);">FICHA DE IDENTIFICAÇÃO BOTÂNICA</p>
+                        <p style="font-size: 11px; color: #008744; font-weight: bold; text-transform: uppercase;">BioBosque • IFPA Campus Itaituba</p>
                     </div>
-                    
-                    <!-- SUA LOGO OFICIAL + BLOCO CNPq / CAPES -->
-                    <div class="bloco-logos-fomento">
-                        <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=150&q=80" class="miniatura-logo-oficial" alt="Logo BioBosque" title="Logo Oficial BioBosque e IFPA">
-                        <div class="badge-fomento-conjunto">
-                            CAPES<br>CNPq
-                        </div>
-                    </div>
+                    <img src="Gemini_Generated_Image_t6dqypt6dqypt6dq_2.jpeg" class="logo-laudo-mini" alt="Logo BioBosque">
                 </div>
-
+                
                 <div class="flex-laudo">
                     <div style="flex: 1;">
-                        <p class="info-detalhe-p"><strong>Nome Popular:</strong> <span id="ld-nome" style="font-size: 18px; font-weight: bold; color: #008744;">--</span></p>
-                        <p class="info-detalhe-p"><strong>Nome Científico:</strong> <span id="ld-cie" style="font-style:italic; font-size: 16px;">--</span></p>
-                        <p class="info-detalhe-p"><strong>Família Botânica:</strong> <span id="ld-fam">--</span></p>
-                        <p class="info-detalhe-p"><strong>Coordenadas GPS:</strong> <span id="ld-coord" style="font-family:monospace;">--</span></p>
-                        <p class="info-detalhe-p"><strong>Notas da Pesquisa:</strong> <span id="ld-notes">--</span></p>
-                        <span class="aviso-qr">💡 Aponte a câmera do telemóvel/celular para o QR Code para aceder à localização no mapa e ao herbário digital.</span>
+                        <p style="margin-bottom: 6px;"><strong>Nome Popular:</strong> <span id="ld-nome">--</span></p>
+                        <p style="margin-bottom: 6px;"><strong>Nome Científico:</strong> <span id="ld-cie" style="font-style:italic;">--</span></p>
+                        <p style="margin-bottom: 6px;"><strong>Família:</strong> <span id="ld-fam">--</span></p>
+                        <p style="margin-bottom: 6px;"><strong>Localização:</strong> <span id="ld-coord">--</span></p>
+                        <p style="margin-bottom: 6px;"><strong>Notas de Pesquisa:</strong> <span id="ld-notes">--</span></p>
+                        <span class="aviso-qr">💡 Escaneie o QR Code ao lado para abrir a localização exata e ficha completa via GPS.</span>
                     </div>
                     
-                    <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
+                    <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
                         <div id="ld-container-foto" class="bloco-foto-laudo">
-                            <div class="sem-foto-texto">Identificador Botânico Ativo</div>
+                            <div class="sem-foto-texto">Sem registro fotográfico</div>
                         </div>
                         <div id="qrcode"></div>
                     </div>
                 </div>
             </div>
             
-            <button class="btn-acao" style="background:#ffc107; color:black; margin-top:15px; font-size:16px;" onclick="imprimirPlacaEspecifica()">🖨️ IMPRIMIR PLACA COM QR CODE</button>
+            <button class="btn-acao" style="background:#ffc107; color:black; margin-top:15px;" onclick="imprimirPlacaEspecifica()">🖨️ IMPRIMIR PLACA COM QR CODE</button>
         </div>
     </div>
 
     <div id="galeria" class="conteudo-aba">
         <div class="secao-card">
             <h2>📸 Galeria do Bosque & Registros dos Visitantes</h2>
-            <p style="font-size: 14px; color: #555; margin-bottom: 15px;">Publique no Instagram com a hashtag oficial do projeto:</p>
+            <p style="font-size: 14px; color: #555; margin-bottom: 15px;">Acompanhe em tempo real os registros e visitas no Bosque do IFPA Itaituba. Publique no Instagram com a hashtag oficial do projeto:</p>
             <div style="display: inline-block; background-color: var(--verde-suave); color: var(--verde-escuro); padding: 8px 16px; border-radius: 20px; font-weight: bold; margin-bottom: 20px; border: 1px solid var(--verde-institucional);">
                 #BioBosqueIFPA
+            </div>
+            
+            <div style="min-height: 400px; width: 100%; border: 1px dashed var(--cinza-borda); border-radius: 8px; padding: 20px; text-align: center; background: #fafafa;">
+                <div class="elfsight-app-SUO-CODIGO-AQUI" data-elfsight-app-lazy>
+                    <p style="color: #888; font-size: 14px; margin-top: 50px;">
+                        📷 <b>Mural de Fotos Integrado</b><br>
+                        As fotos publicadas com a hashtag do Bosque aparecerão neste painel.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -511,153 +418,455 @@
     <div id="lb-legenda" class="lb-legenda"></div>
 </div>
 
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
 <script>
-    // AS 14 ÁRVORES OFICIAIS DO SEU TCC 100% PRESERVADAS
     const listaInicialBase = [
         { id: 1, nome: "Acácia", cientifico: "Acacia mangium", familia: "Fabaceae", coord: "-4.22235, -56.00107", notas: "Árvore de rápido crescimento, amplamente utilizada para recuperação de solos degradados, fixação de nitrogênio e proteção de encostas.", foto: [] },
         { id: 2, nome: "Cacau Selvagem", cientifico: "Theobroma speciosum", familia: "Malvaceae", coord: "-4.22033, -55.99903", notas: "Espécie nativa do sub-bosque denso. Antecessora silvestre do cacau comercial, possui altíssimo valor para a preservação da biodiversidade genética regional.", foto: [] },
         { id: 3, nome: "Cajá", cientifico: "Spondias mombin", familia: "Anacardiaceae", coord: "-4.22086, -55.99900", notas: "Espécie frutífera de grande porte com alto potencial agroindustrial (polpas, sucos e geleias), além de alimentar a fauna local.", foto: [] },
         { id: 4, nome: "Cajueiro", cientifico: "Anacardium occidentale", familia: "Anacardiaceae", coord: "-4.22100, -55.99892", notas: "Frutífera nativa tropical. Apresenta pseudofruto rico em Vitamina C e castanha de elevado valor comercial e nutricional no mercado nacional.", foto: [] },
         { id: 5, nome: "Castanheira", cientifico: "Bertholletia excelsa", familia: "Lecythidaceae", coord: "-4.22097, -55.99967", notas: "Conhecida como a 'Gigante da Amazônia'. Espécie protegida por lei cuja semente possui extraordinário valor nutricional, comercial e ecológico.", foto: [] },
-        { id: 6, nome: "Mangueira", cientifico: "Mangifera indica", familia: "Anacardiaceae", coord: "-4.22150, -56.00010", notas: "Árvore frutífera introduzida, amplamente encontrada ao longo das trilhas e áreas sombreadas do bosque.", foto: [] },
-        { id: 7, nome: "Tucumã", cientifico: "Astrocaryum vulgare", familia: "Arecaceae", coord: "-4.22110, -56.00045", notas: "Palmeira nativa de grande importância ecológica e alimentar na Amazônia, rica em pró-vitamina A.", foto: [] },
-        { id: 8, nome: "Cupuaçuzeiro", cientifico: "Theobroma grandiflorum", familia: "Malvaceae", coord: "-4.22060, -55.99950", notas: "Frutífera emblemática da região amazônica, muito utilizada na culinária e indústria de cosméticos.", foto: [] },
-        { id: 9, nome: "Andiroba", cientifico: "Carapa guianensis", familia: "Meliaceae", coord: "-4.22180, -56.00080", notas: "Árvore de grande porte cujos óleos extraídos das sementes possuem propriedades medicinais e cicatrizantes reconhecidas.", foto: [] },
-        { id: 10, nome: "Ipê-Amarelo", cientifico: "Handroanthus albus", familia: "Bignoniaceae", coord: "-4.22020, -55.99870", notas: "Espécie de grande destaque ornamental e madeireiro, famosa pela espetacular floração amarela durante o período de seca.", foto: [] },
-        { id: 11, nome: "Açaizeiro", cientifico: "Euterpe oleracea", familia: "Arecaceae", coord: "-4.22140, -55.99930", notas: "Palmeira nativa de áreas alagadas, fundamental para a economia e segurança alimentar regional através do fruto do açaí.", foto: [] },
-        { id: 12, nome: "Buriti", cientifico: "Mauritia flexuosa", familia: "Arecaceae", coord: "-4.22190, -56.00120", notas: "Palmeira majestosa típica de veredas e áreas úmidas, servindo de abrigo e alimento para diversas espécies da fauna silvestre.", foto: [] },
-        { id: 13, nome: "Cedro", cientifico: "Cedrela odorata", familia: "Meliaceae", coord: "-4.22040, -56.00020", notas: "Árvore de madeira nobre e aromática, altamente valorizada na marcenaria e carpintaria.", foto: [] },
-        { id: 14, nome: "Ucuúba", cientifico: "Virola surinamensis", familia: "Myristicaceae", coord: "-4.22125, -56.00065", notas: "Espécie típica de áreas de várzea, cujas sementes fornecem gordura vegetal aromática aplicada em saboaria.", foto: [] }
+        { id: 6, nome: "Acácia", cientifico: "Acacia mangium", familia: "Fabaceae", coord: "-4.23860, -56.00827", notas: "Árvore de rápido crescimento, indicada para recuperação de áreas degradadas e proteção do solo (Ponto de monitoramento secundário).", foto: [] },
+        { id: 7, nome: "Castanheira", cientifico: "Bertholletia excelsa", familia: "Lecythidaceae", coord: "-4.22150, -55.99881", notas: "Espécie protegida por lei. Considerada um gigante da Amazônia, com sementes de alto valor nutritivo e socioeconômico. [Ponto 1 - Beira Rio]", foto: [] },
+        { id: 8, nome: "Cupuaçu", cientifico: "Theobroma grandiflorum", familia: "Malvaceae", coord: "-4.22100, -55.99892", notas: "Frutífera amazônica emblemática, cuja polpa e sementes possuem ampla aplicação culinária e na indústria de cosméticos.", foto: [] },
+        { id: 9, nome: "Embaúba", cientifico: "Cecropia leucomela", familia: "Urticaceae", coord: "-4.22181, -56.00067", notas: "Planta pioneira de crescimento acelerado, fundamental em processos pioneiros de regeneração florestal espontânea.", foto: [] },
+        { id: 10, nome: "Inajá", cientifico: "Maximiliana maripa", familia: "Arecaceae", coord: "-4.22139, -55.99881", notas: "Palmeira nativa de frutos oleaginosos e folhas largamente utilizadas em coberturas e artesanato tradicional.", foto: [] },
+        { id: 11, nome: "Ipê", cientifico: "Handroanthus chrysanthus", familia: "Bignoniaceae", coord: "-4.22120, -55.99920", notas: "Espécie ornamental de madeira densa, com flores de alta expressividade estética e potencial terapêutico. (Área interna do bosque)", foto: [] },
+        { id: 12, nome: "Mangueira", cientifico: "Mangifera indica", familia: "Anacardiaceae", coord: "-4.22100, -55.99892", notas: "Árvore exótica amplamente cultivada na região urbana e institucional pela oferta de sombra e frutos.", foto: [] },
+        { id: 13, nome: "Mogno Africano", cientifico: "Khaya senegalensis", familia: "Meliaceae", coord: "-4.22140, -55.99950", notas: "Árvore introduzida de elevado valor comercial madeireiro, utilizada em modelos de reflorestamento produtivo comercial. (Área de transição)", foto: [] },
+        { id: 14, nome: "Sumaúma", cientifico: "Ceiba pentandra", familia: "Malvaceae", coord: "-4.22019, -55.99903", notas: "Considerada a 'árvore da vida' ou 'rainha da floresta', possui imenso valor cultural e ecológico na Amazônia, atuando na retenção de água do solo.", foto: [] }
     ];
 
-    let baseDadosPlantas = listaInicialBase;
-    let mapPrincipal = null;
-    let mapCadastro = null;
-    let marcadorCadastro = null;
-    let marcadoresNoMapaPrincipal = [];
+    let dadosArvores = [];
+    const fotosArray = ["Equipe%20de%20Campo.jpeg","final%20da%20trilha.jpeg","In%C3%ADcio%20da%20Trilha.jpeg","mapa%20da%20trilha.png","Trilha%20guiada.jpg","acompanhamento%20tecnico.jpg","ambienta%C3%A7ao.jpg","conhecendo%20o%20bosque.jpg","Dentro%20do%20bosque.jpg","Entrada%20do%20Bosque.jpeg"];
+    const legendasArray = ["Equipe de Campo", "Final da Trilha", "Início da Trilha", "Mapa da Trilha", "Trilha Guiada", "Acompanhamento Técnico", "Ambientação", "Conhecendo o Bosque", "Dentro do Bosque", "Entrada ao Bosque"];
 
-    let slideIndex = 0;
-    let slidePresIndex = 0;
+    let slideIndex = 1;
+    let slidePresIndex = 1;
+    let lightboxIndex = 0;
+    let mapaPrincipal, mapaCadastro, marcadorCadastro;
+    let camadaMarcadores;
+    let fotoBase64Temporaria = [];
 
-    document.addEventListener("DOMContentLoaded", () => {
-        inicializarMapas();
-        atualizarTabelaCatalogo();
-        atualizarGridHerbario();
-        atualizarSeletorLaudos();
-        inicializarCarrosselPrincipal();
-        inicializarCarrosselPreservacao();
+    document.addEventListener("DOMContentLoaded", function() {
+        inicializarPontosCarrossel();
+        mostrarSlides(slideIndex);
+        mostrarSlidesPreservacao(slidePresIndex);
+        inicializarMapasSatellites();
+        conectarEouvirFirebase();
+        
+        document.getElementById('input-camera').addEventListener('change', processarMidiaDispositivo);
+        setInterval(() => mudarSlide(1), 5000);
+        setInterval(() => mudarSlidePreservacao(1), 4000);
     });
 
-    function mudarAba(idAba) {
-        document.querySelectorAll('.conteudo-aba').forEach(el => el.classList.remove('ativa'));
-        document.querySelectorAll('.aba-btn').forEach(el => el.classList.remove('ativa'));
-        
-        document.getElementById(idAba).classList.add('ativa');
-        
-        const btnCorrespondente = document.getElementById(`btn-${idAba}`);
-        if(btnCorrespondente) btnCorrespondente.classList.add('ativa');
+    function conectarEouvirFirebase() {
+        const checarConexao = setInterval(() => {
+            if (window.dbFirebase && window.refFirebase && window.onValueFirebase) {
+                clearInterval(checarConexao);
+                const arvoresRef = window.refFirebase(window.dbFirebase, 'arvores');
+                window.onValueFirebase(arvoresRef, (snapshot) => {
+                    const dados = snapshot.val();
+                    
+                    if (dados) {
+                        dadosArvores = Object.keys(dados)
+                            .map(key => dados[key])
+                            .sort((a, b) => Number(a.id) - Number(b.id));
+                    } else {
+                        dadosArvores = listaInicialBase;
+                        sincronizarTudoParaFirebase();
+                    }
+                    plotarMarcadores();
+                    atualizarInterface();
+                });
+            }
+        }, 300);
+    }
 
-        if (idAba === 'inicio' && mapPrincipal) {
-            setTimeout(() => mapPrincipal.invalidateSize(), 200);
-        }
-        if (idAba === 'cadastro' && mapCadastro) {
-            setTimeout(() => mapCadastro.invalidateSize(), 200);
+    function sincronizarTudoParaFirebase() {
+        if (window.dbFirebase && window.refFirebase && window.setFirebase) {
+            const dadosObjeto = {};
+            dadosArvores.forEach(a => { dadosObjeto['id_' + a.id] = a; });
+            window.setFirebase(window.refFirebase(window.dbFirebase, 'arvores'), dadosObjeto);
         }
     }
 
-    function inicializarMapas() {
-        if(!document.getElementById('map-principal')) return;
+    function excluirArvore(id, event) {
+        if (event) event.stopPropagation();
+        
+        const arvor = dadosArvores.find(a => a.id == id);
+        const nomeConfirmacao = arvor ? `#${arvor.id} - ${arvor.nome}` : `#${id}`;
 
-        mapPrincipal = L.map('map-principal').setView([-4.2212, -56.0000], 16);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(mapPrincipal);
+        if (confirm(`Tem certeza que deseja excluir permanentemente a árvore ${nomeConfirmacao}?`)) {
+            if (window.dbFirebase && window.refFirebase && window.removeFirebase) {
+                const itemRef = window.refFirebase(window.dbFirebase, `arvores/id_${id}`);
+                window.removeFirebase(itemRef).then(() => {
+                    alert("Árvore removida com sucesso!");
+                }).catch((error) => {
+                    console.error("Erro ao remover do Firebase:", error);
+                    alert("Erro ao excluir. Tente novamente.");
+                });
+            }
+        }
+    }
+
+    function mudarAba(abaId) {
+        document.querySelectorAll('.conteudo-aba').forEach(a => a.classList.remove('ativa'));
+        document.querySelectorAll('.aba-btn').forEach(b => b.classList.remove('ativa'));
+        document.getElementById(abaId).classList.add('ativa');
+        document.getElementById('btn-' + abaId).classList.add('ativa');
+
+        if (abaId === 'cadastro') {
+            obterGPSDispositivo(false);
+        }
         
-        mapCadastro = L.map('map-cadastro').setView([-4.2212, -56.0000], 16);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(mapCadastro);
-        
-        mapCadastro.on('click', (e) => {
-            const lat = e.latlng.lat.toFixed(5);
-            const lng = e.latlng.lng.toFixed(5);
-            document.getElementById('reg-coords').value = `${lat}, ${lng}`;
-            colocarMarcadorCadastro(lat, lng);
+        if (abaId === 'emissao' && dadosArvores.length > 0) {
+            const seletor = document.getElementById('seletor-laudos');
+            if (seletor.value) {
+                atualizarLaudo(seletor.value);
+            } else if (dadosArvores[0]) {
+                seletor.value = dadosArvores[0].id;
+                atualizarLaudo(dadosArvores[0].id);
+            }
+        }
+
+        setTimeout(() => {
+            if (abaId === 'inicio' && mapaPrincipal) { mapaPrincipal.invalidateSize(); plotarMarcadores(); }
+            if (abaId === 'cadastro' && mapaCadastro) mapaCadastro.invalidateSize();
+        }, 200);
+    }
+
+    function inicializarMapasSatellites() {
+        const centroItaituba = [-4.2212, -55.9995];
+
+        const googleSat = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 22,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+            attribution: 'Google Maps'
         });
 
-        atualizarMapaPrincipal();
+        mapaPrincipal = L.map('map-principal', {
+            center: centroItaituba,
+            zoom: 17,
+            layers: [googleSat]
+        });
+
+        camadaMarcadores = L.layerGroup().addTo(mapaPrincipal);
+
+        const googleSatCad = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 22,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+            attribution: 'Google Maps'
+        });
+
+        mapaCadastro = L.map('map-cadastro', {
+            center: centroItaituba,
+            zoom: 17,
+            layers: [googleSatCad]
+        });
+
+        mapaCadastro.on('click', function(e) {
+            atualizarPontoMapa(e.latlng.lat, e.latlng.lng);
+        });
     }
 
-    function colocarMarcadorCadastro(lat, lng) {
-        if (marcadorCadastro) {
-            marcadorCadastro.setLatLng([lat, lng]);
-        } else {
-            marcadorCadastro = L.marker([lat, lng], { draggable: true }).addTo(mapCadastro);
-            marcadorCadastro.on('dragend', (evt) => {
-                const pos = evt.target.getLatLng();
-                document.getElementById('reg-coords').value = `${pos.lat.toFixed(5)}, ${pos.lng.toFixed(5)}`;
-            });
-        }
-        mapCadastro.setView([lat, lng], 17);
-    }
+    function plotarMarcadores() {
+        if (!camadaMarcadores) return;
+        camadaMarcadores.clearLayers();
 
-    function atualizarMapaPrincipal() {
-        if (!mapPrincipal) return;
-        marcadoresNoMapaPrincipal.forEach(m => mapPrincipal.removeLayer(m));
-        marcadoresNoMapaPrincipal = [];
-
-        baseDadosPlantas.forEach(item => {
-            if (item.coord) {
-                const partes = item.coord.split(',');
+        dadosArvores.forEach(arvor => {
+            if (arvor.coord) {
+                const partes = arvor.coord.split(',');
                 if (partes.length === 2) {
-                    const lat = parseFloat(partes[0]);
-                    const lng = parseFloat(partes[1]);
+                    const lat = parseFloat(partes[0].trim());
+                    const lng = parseFloat(partes[1].trim());
                     if (!isNaN(lat) && !isNaN(lng)) {
-                        const marker = L.marker([lat, lng]).addTo(mapPrincipal);
-                        marker.bindPopup(`<b>#${item.id} - ${item.nome}</b><br><em>${item.cientifico}</em><br>${item.notas || ''}`);
-                        marcadoresNoMapaPrincipal.push(marker);
+                        const marker = L.marker([lat, lng]);
+                        marker.bindPopup(`
+                            <strong style="color: #008744; font-size: 14px;">#${arvor.id} - ${arvor.nome}</strong><br>
+                            <em>${arvor.cientifico}</em><br>
+                            <small><b>Família:</b> ${arvor.familia}</small><br>
+                            <small><b>Coord:</b> ${arvor.coord}</small>
+                        `);
+                        camadaMarcadores.addLayer(marker);
                     }
                 }
             }
         });
     }
 
-    function obterGPSDispositivo() {
-        if (!navigator.geolocation) {
-            alert('Geolocalização não é suportada pelo navegador.');
-            return;
+    function atualizarInterface() {
+        const corpoTabela = document.getElementById('corpo-tabela');
+        const seletor = document.getElementById('seletor-laudos');
+        const gridHerbario = document.getElementById('grid-herbario');
+
+        corpoTabela.innerHTML = "";
+        seletor.innerHTML = "";
+        gridHerbario.innerHTML = "";
+
+        dadosArvores.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td onclick="carregarParaEdicao(${item.id})"><b>#${item.id}</b></td>
+                <td onclick="carregarParaEdicao(${item.id})">${item.nome}</td>
+                <td onclick="carregarParaEdicao(${item.id})"><i>${item.cientifico}</i></td>
+                <td onclick="carregarParaEdicao(${item.id})">${item.familia}</td>
+                <td onclick="carregarParaEdicao(${item.id})">${item.notas}</td>
+                <td onclick="carregarParaEdicao(${item.id})"><code>${item.coord}</code></td>
+                <td style="text-align: center;">
+                    <button class="btn-tabela-excluir" onclick="excluirArvore(${item.id}, event)">🗑️ Excluir</button>
+                </td>
+            `;
+            corpoTabela.appendChild(tr);
+
+            const opt = document.createElement('option');
+            opt.value = item.id;
+            opt.textContent = `#${item.id} - ${item.nome} (${item.cientifico})`;
+            seletor.appendChild(opt);
+
+            const card = document.createElement('div');
+            card.className = 'card-planta';
+
+            const midias = (item.foto && item.foto.length > 0) ? item.foto : ['https://via.placeholder.com/300x200?text=Sem+Foto+Registrada'];
+            const primeiraMidia = midias[0];
+            const eVideo = primeiraMidia.startsWith('data:video') || primeiraMidia.endsWith('.mp4');
+
+            let midiaPrincipalHtml = eVideo 
+                ? `<video src="${primeiraMidia}" controls class="card-midia-item" id="midia-destaque-${item.id}"></video>`
+                : `<img src="${primeiraMidia}" class="card-midia-item" id="midia-destaque-${item.id}" alt="${item.nome}">`;
+
+            let galeriaMiniaturasHtml = '';
+            if (midias.length > 1) {
+                galeriaMiniaturasHtml = `<div class="galeria-miniaturas">`;
+                midias.forEach((m, idx) => {
+                    const isVid = m.startsWith('data:video') || m.endsWith('.mp4');
+                    if (isVid) {
+                        galeriaMiniaturasHtml += `<video src="${m}" class="${idx === 0 ? 'miniatura-ativa' : ''}" onclick="trocarMidiaDestaque(${item.id}, '${m}', true, this)"></video>`;
+                    } else {
+                        galeriaMiniaturasHtml += `<img src="${m}" class="${idx === 0 ? 'miniatura-ativa' : ''}" onclick="trocarMidiaDestaque(${item.id}, '${m}', false, this)">`;
+                    }
+                });
+                galeriaMiniaturasHtml += `</div>`;
+            }
+
+            card.innerHTML = `
+                <div class="card-midia-container" id="box-destaque-${item.id}">
+                    ${midiaPrincipalHtml}
+                </div>
+                ${galeriaMiniaturasHtml}
+                <div class="card-planta-corpo">
+                    <span class="card-planta-tag">#${item.id} • ${item.familia || 'Família N/I'}</span>
+                    <div class="card-planta-titulo">${item.nome}</div>
+                    <div class="card-planta-cientifico">${item.cientifico || 'Sem nome científico'}</div>
+                    <div class="card-planta-desc">${item.notas || 'Sem descrição cadastrada.'}</div>
+                    <div class="card-planta-coord">📍 ${item.coord || 'Sem coordenadas'}</div>
+                    
+                    <div class="card-rodape-qr">
+                        <button class="btn-imprimir-card" onclick="imprimirDoHerbario(${item.id})">🖨️ Imprimir Placa</button>
+                        <div id="qr-herbario-${item.id}" class="qr-herbario-box"></div>
+                    </div>
+                </div>
+            `;
+            gridHerbario.appendChild(card);
+
+            setTimeout(() => {
+                const qrBox = document.getElementById(`qr-herbario-${item.id}`);
+                if (qrBox && item.coord) {
+                    qrBox.innerHTML = "";
+                    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.coord)}`;
+                    new QRCode(qrBox, {
+                        text: mapsUrl,
+                        width: 72,
+                        height: 72
+                    });
+                }
+            }, 100);
+        });
+
+        if (seletor.value) {
+            atualizarLaudo(seletor.value);
         }
-        navigator.geolocation.getCurrentPosition((pos) => {
-            const lat = pos.coords.latitude.toFixed(5);
-            const lng = pos.coords.longitude.toFixed(5);
-            document.getElementById('reg-coords').value = `${lat}, ${lng}`;
-            if (mapCadastro) colocarMarcadorCadastro(lat, lng);
-            alert('GPS atualizado!');
-        }, (err) => alert('Erro no GPS: ' + err.message));
     }
 
-    function buscarEnderecoMapa() {
-        const query = document.getElementById('campo-busca-endereco').value;
-        if (!query) return;
-        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data && data.length > 0) {
-                    const lat = parseFloat(data[0].lat).toFixed(5);
-                    const lng = parseFloat(data[0].lon).toFixed(5);
-                    document.getElementById('reg-coords').value = `${lat}, ${lng}`;
-                    if (mapCadastro) colocarMarcadorCadastro(lat, lng);
-                } else alert('Localização não encontrada.');
-            });
+    function trocarMidiaDestaque(itemId, mediaUrl, isVideo, elem) {
+        const box = document.getElementById(`box-destaque-${itemId}`);
+        if (!box) return;
+
+        if (isVideo) {
+            box.innerHTML = `<video src="${mediaUrl}" controls autoplay class="card-midia-item"></video>`;
+        } else {
+            box.innerHTML = `<img src="${mediaUrl}" class="card-midia-item">`;
+        }
+
+        const miniaturas = elem.parentElement.querySelectorAll('img, video');
+        miniaturas.forEach(m => m.classList.remove('miniatura-ativa'));
+        elem.classList.add('miniatura-ativa');
     }
 
-    function atualizarMapaViaInput(val) {
-        const partes = val.split(',');
-        if (partes.length === 2) {
-            const lat = parseFloat(partes[0].trim());
-            const lng = parseFloat(partes[1].trim());
-            if (!isNaN(lat) && !isNaN(lng) && mapCadastro) colocarMarcadorCadastro(lat, lng);
+    function imprimirDoHerbario(id) {
+        mudarAba('emissao');
+        document.getElementById('seletor-laudos').value = id;
+        atualizarLaudo(id);
+        setTimeout(() => { window.print(); }, 300);
+    }
+
+    function carregarParaEdicao(id) {
+        const item = dadosArvores.find(a => a.id == id);
+        if (!item) return;
+
+        mudarAba('cadastro');
+
+        document.getElementById('titulo-formulario').textContent = `✏️ Editar Registros #${item.id}`;
+        document.getElementById('reg-id').value = item.id;
+        document.getElementById('reg-coords').value = item.coord || '';
+        document.getElementById('reg-nome').value = item.nome || '';
+        document.getElementById('reg-cientifico').value = item.cientifico || '';
+        document.getElementById('reg-familia').value = item.familia || '';
+        document.getElementById('reg-caract').value = item.notas || '';
+        
+        fotoBase64Temporaria = item.foto || [];
+        renderizarPreviewEvidencias();
+
+        if (item.coord) {
+            const p = item.coord.split(',');
+            if (p.length === 2) {
+                const lat = parseFloat(p[0].trim());
+                const lng = parseFloat(p[1].trim());
+                if (!isNaN(lat) && !isNaN(lng)) {
+                    atualizarPontoMapa(lat, lng);
+                }
+            }
         }
     }
 
     function dispararColetaCampo() {
         document.getElementById('input-camera').click();
+    }
+
+    function processarMidiaDispositivo(e) {
+        const files = Array.from(e.target.files);
+        if (!files.length) return;
+
+        files.forEach(file => {
+            EXIF.getData(file, function() {
+                const latData = EXIF.getTag(this, "GPSLatitude");
+                const latRef = EXIF.getTag(this, "GPSLatitudeRef");
+                const lonData = EXIF.getTag(this, "GPSLongitude");
+                const lonRef = EXIF.getTag(this, "GPSLongitudeRef");
+
+                if (latData && lonData && latRef && lonRef) {
+                    const lat = converterDMSParaDecimal(latData, latRef);
+                    const lng = converterDMSParaDecimal(lonData, lonRef);
+                    atualizarPontoMapa(lat, lng);
+                } else {
+                    obterGPSDispositivo(false);
+                }
+            });
+
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                fotoBase64Temporaria.push(evt.target.result);
+                renderizarPreviewEvidencias();
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    function converterDMSParaDecimal(dms, ref) {
+        let decimal = dms[0] + dms[1] / 60 + dms[2] / 3600;
+        return (ref === "S" || ref === "W") ? -decimal : decimal;
+    }
+
+    function obterGPSDispositivo(alertaFalha = true) {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    atualizarPontoMapa(pos.coords.latitude, pos.coords.longitude);
+                },
+                (erro) => {
+                    if (alertaFalha) {
+                        alert("Não foi possível acessar seu GPS. Verifique a permissão do navegador ou pesquise o local no campo de busca.");
+                    }
+                },
+                { enableHighAccuracy: true, timeout: 10000 }
+            );
+        } else if (alertaFalha) {
+            alert("Navegador sem suporte a Geolocalização. Use a busca ou selecione diretamente no mapa.");
+        }
+    }
+
+    function buscarEnderecoMapa() {
+        const query = document.getElementById('campo-busca-endereco').value;
+        if (!query.trim()) return;
+
+        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.length > 0) {
+                    const lat = parseFloat(data[0].lat);
+                    const lon = parseFloat(data[0].lon);
+                    atualizarPontoMapa(lat, lon);
+                } else {
+                    alert("Localização não encontrada. Tente buscar informando a cidade/região.");
+                }
+            })
+            .catch(() => alert("Erro ao buscar a localização. Tente novamente."));
+    }
+
+    function atualizarPontoMapa(lat, lng) {
+        const latFixed = parseFloat(lat).toFixed(6);
+        const lngFixed = parseFloat(lng).toFixed(6);
+        const coordStr = `${latFixed}, ${lngFixed}`;
+        const latlng = [parseFloat(latFixed), parseFloat(lngFixed)];
+
+        document.getElementById('reg-coords').value = coordStr;
+        mapaCadastro.setView(latlng, 18);
+
+        if (marcadorCadastro) {
+            marcadorCadastro.setLatLng(latlng);
+        } else {
+            marcadorCadastro = L.marker(latlng, { draggable: true }).addTo(mapaCadastro);
+            marcadorCadastro.on('dragend', function(ev) {
+                const pos = ev.target.getLatLng();
+                document.getElementById('reg-coords').value = `${pos.lat.toFixed(6)}, ${pos.lng.toFixed(6)}`;
+            });
+        }
+    }
+
+    function atualizarMapaViaInput(valor) {
+        const partes = valor.split(',');
+        if (partes.length === 2) {
+            const lat = parseFloat(partes[0].trim());
+            const lng = parseFloat(partes[1].trim());
+            if (!isNaN(lat) && !isNaN(lng)) {
+                atualizarPontoMapa(lat, lng);
+            }
+        }
+    }
+
+    function renderizarPreviewEvidencias() {
+        const container = document.getElementById('container-evidencia');
+        const preview = document.getElementById('espaco-preview');
+        preview.innerHTML = "";
+
+        if (fotoBase64Temporaria && fotoBase64Temporaria.length > 0) {
+            container.style.display = "block";
+            fotoBase64Temporaria.forEach(src => {
+                const isVideo = src.startsWith('data:video') || src.endsWith('.mp4');
+                let elem;
+                if (isVideo) {
+                    elem = document.createElement('video');
+                    elem.src = src;
+                } else {
+                    elem = document.createElement('img');
+                    elem.src = src;
+                }
+                elem.className = 'preview-media-capturada';
+                preview.appendChild(elem);
+            });
+        } else {
+            container.style.display = "none";
+        }
     }
 
     function salvarItemArboreto() {
@@ -668,232 +877,177 @@
         const familia = document.getElementById('reg-familia').value;
         const notas = document.getElementById('reg-caract').value;
 
-        if (!nome || !cientifico) {
-            alert('Preencha pelo menos o Nome Popular e o Nome Científico.');
+        if (!nome || !coords) {
+            alert("Por favor, informe ao menos o Nome Popular e as Coordenadas.");
             return;
         }
 
-        if (idCampo) {
-            let item = baseDadosPlantas.find(p => p.id == idCampo);
-            if (item) {
-                item.coord = coords;
-                item.nome = nome;
-                item.cientifico = cientifico;
-                item.familia = familia;
-                item.notas = notas;
-            }
-        } else {
-            const novoId = baseDadosPlantas.length > 0 ? Math.max(...baseDadosPlantas.map(p => p.id)) + 1 : 1;
-            baseDadosPlantas.push({
-                id: novoId,
-                nome: nome,
-                cientifico: cientifico,
-                familia: familia,
-                coord: coords,
-                notas: notas,
-                foto: []
-            });
+        let novoId = idCampo ? parseInt(idCampo) : (dadosArvores.length > 0 ? Math.max(...dadosArvores.map(a => a.id)) + 1 : 1);
+
+        const objetoArvore = {
+            id: novoId,
+            nome: nome,
+            cientifico: cientifico || "--",
+            familia: familia || "--",
+            coord: coords,
+            notas: notas || "--",
+            foto: fotoBase64Temporaria || []
+        };
+
+        if (window.dbFirebase && window.refFirebase && window.setFirebase) {
+            window.setFirebase(window.refFirebase(window.dbFirebase, 'arvores/id_' + novoId), objetoArvore);
         }
 
-        atualizarTabelaCatalogo();
-        atualizarGridHerbario();
-        atualizarSeletorLaudos();
-        atualizarMapaPrincipal();
-        limparFormularioCadastro();
-        alert('Espécie salva com sucesso!');
-        mudarAba('catalogo');
+        limparFormulario();
+        alert("Registro salvo com sucesso no Arboreto!");
     }
 
-    function limparFormularioCadastro() {
-        document.getElementById('reg-id').value = '';
-        document.getElementById('reg-coords').value = '';
-        document.getElementById('reg-nome').value = '';
-        document.getElementById('reg-cientifico').value = '';
-        document.getElementById('reg-familia').value = '';
-        document.getElementById('reg-caract').value = '';
-    }
-
-    function atualizarTabelaCatalogo() {
-        const tbody = document.getElementById('corpo-tabela');
-        tbody.innerHTML = '';
-        baseDadosPlantas.forEach(item => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td><b>#${item.id}</b></td>
-                <td>${item.nome}</td>
-                <td style="font-style:italic;">${item.cientifico}</td>
-                <td>${item.familia || '--'}</td>
-                <td>${item.notas || '--'}</td>
-                <td style="font-family:monospace; font-size:12px;">${item.coord || '--'}</td>
-                <td style="text-align: center; display: flex; gap: 6px; justify-content: center;">
-                    <button class="aba-btn" style="padding:6px 10px; font-size:11px; min-width:auto;" onclick="editarRegistro(${item.id})">✏️ Editar</button>
-                    <button class="btn-tabela-excluir" onclick="excluirRegistro(${item.id})">Excluir</button>
-                </td>
-            `;
-            tbody.appendChild(tr);
-        });
-    }
-
-    function editarRegistro(id) {
-        const item = baseDadosPlantas.find(p => p.id == id);
-        if (!item) return;
-
-        document.getElementById('reg-id').value = item.id;
-        document.getElementById('reg-coords').value = item.coord || '';
-        document.getElementById('reg-nome').value = item.nome || '';
-        document.getElementById('reg-cientifico').value = item.cientifico || '';
-        document.getElementById('reg-familia').value = item.familia || '';
-        document.getElementById('reg-caract').value = item.notas || '';
-
-        mudarAba('cadastro');
-        if (item.coord) {
-            const p = item.coord.split(',');
-            if (p.length === 2) colocarMarcadorCadastro(p[0].trim(), p[1].trim());
-        }
-    }
-
-    function excluirRegistro(id) {
-        if (confirm('Deseja remover este registro?')) {
-            baseDadosPlantas = baseDadosPlantas.filter(p => p.id != id);
-            atualizarTabelaCatalogo();
-            atualizarGridHerbario();
-            atualizarSeletorLaudos();
-            atualizarMapaPrincipal();
-        }
-    }
-
-    function atualizarGridHerbario() {
-        const grid = document.getElementById('grid-herbario');
-        grid.innerHTML = '';
-
-        baseDadosPlantas.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'card-planta';
-
-            card.innerHTML = `
-                <div class="card-midia-container">
-                    <div style="color:#aaa; font-size:13px; text-align:center;">🌿 Catálogo BioBosque #${item.id}</div>
-                </div>
-                <div class="card-planta-corpo">
-                    <span class="card-planta-tag">${item.familia || 'Família Botânica'}</span>
-                    <div class="card-planta-titulo">${item.nome}</div>
-                    <div class="card-planta-cientifico">${item.cientifico}</div>
-                    <div class="card-planta-desc">${item.notas || 'Sem descrição cadastrada.'}</div>
-                    <div class="card-planta-coord">GPS: ${item.coord || 'Não informado'}</div>
-                    <div class="card-rodape-qr">
-                        <div class="qr-herbario-box" id="qr-herb-${item.id}"></div>
-                        <button class="btn-imprimir-card" onclick="imprimirPlacaDireta(${item.id})">🖨️ Imprimir Placa</button>
-                    </div>
-                </div>
-            `;
-            grid.appendChild(card);
-
-            setTimeout(() => {
-                const el = document.getElementById(`qr-herb-${item.id}`);
-                if (el) {
-                    el.innerHTML = '';
-                    new QRCode(el, {
-                        text: `https://biobosque.online/especie/${item.id}`,
-                        width: 72,
-                        height: 72
-                    });
-                }
-            }, 50);
-        });
-    }
-
-    function atualizarSeletorLaudos() {
-        const select = document.getElementById('seletor-laudos');
-        select.innerHTML = '';
-        baseDadosPlantas.forEach(item => {
-            const opt = document.createElement('option');
-            opt.value = item.id;
-            opt.textContent = `#${item.id} — ${item.nome} (${item.cientifico})`;
-            select.appendChild(opt);
-        });
-        if (baseDadosPlantas.length > 0) {
-            atualizarLaudo(baseDadosPlantas[0].id);
+    function limparFormulario() {
+        document.getElementById('titulo-formulario').textContent = "📋 Dados de Inventário";
+        document.getElementById('reg-id').value = "";
+        document.getElementById('reg-coords').value = "";
+        document.getElementById('reg-nome').value = "";
+        document.getElementById('reg-cientifico').value = "";
+        document.getElementById('reg-familia').value = "";
+        document.getElementById('reg-caract').value = "";
+        fotoBase64Temporaria = [];
+        renderizarPreviewEvidencias();
+        if (marcadorCadastro) {
+            mapaCadastro.removeLayer(marcadorCadastro);
+            marcadorCadastro = null;
         }
     }
 
     function atualizarLaudo(id) {
-        const item = baseDadosPlantas.find(p => p.id == id);
+        const item = dadosArvores.find(a => a.id == id);
         if (!item) return;
 
         document.getElementById('ld-nome').textContent = item.nome;
         document.getElementById('ld-cie').textContent = item.cientifico;
-        document.getElementById('ld-fam').textContent = item.familia || '--';
-        document.getElementById('ld-coord').textContent = item.coord || '--';
-        document.getElementById('ld-notes').textContent = item.notas || '--';
+        document.getElementById('ld-fam').textContent = item.familia;
+        document.getElementById('ld-coord').textContent = item.coord;
+        document.getElementById('ld-notes').textContent = item.notas;
 
-        const qrBox = document.getElementById('qrcode');
-        qrBox.innerHTML = '';
+        const containerFoto = document.getElementById('ld-container-foto');
+        containerFoto.innerHTML = "";
+        if (item.foto && item.foto.length > 0) {
+            const primeira = item.foto[0];
+            const isVideo = primeira.startsWith('data:video') || primeira.endsWith('.mp4');
+            let elem;
+            if (isVideo) {
+                elem = document.createElement('video');
+                elem.src = primeira;
+                elem.controls = true;
+            } else {
+                elem = document.createElement('img');
+                elem.src = primeira;
+            }
+            containerFoto.appendChild(elem);
+        } else {
+            containerFoto.innerHTML = '<div class="sem-foto-texto">Sem registro fotográfico</div>';
+        }
+
+        const qrContainer = document.getElementById('qrcode');
+        qrContainer.innerHTML = "";
+        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.coord)}`;
         
-        new QRCode(qrBox, {
-            text: `https://biobosque.online/especie/${item.id}`,
+        new QRCode(qrContainer, {
+            text: mapsUrl,
             width: 120,
-            height: 120
+            height: 120,
+            correctLevel: QRCode.CorrectLevel.H
         });
     }
 
-    function imprimirPlacaEspecifica() { window.print(); }
-
-    function imprimirPlacaDireta(id) {
-        document.getElementById('seletor-laudos').value = id;
-        atualizarLaudo(id);
-        mudarAba('emissao');
-        setTimeout(() => window.print(), 300);
+    function imprimirPlacaEspecifica() {
+        window.print();
     }
 
-    function inicializarCarrosselPrincipal() {
-        const slides = document.querySelectorAll('.meu-slide');
-        const containerPontos = document.getElementById('container-pontinhos');
-        if(!containerPontos) return;
-        containerPontos.innerHTML = '';
-
-        slides.forEach((_, idx) => {
-            const p = document.createElement('span');
-            p.className = 'ponto';
-            p.onclick = () => irParaSlide(idx);
-            containerPontos.appendChild(p);
+    function inicializarPontosCarrossel() {
+        const container = document.getElementById('container-pontinhos');
+        container.innerHTML = "";
+        fotosArray.forEach((_, idx) => {
+            const dot = document.createElement('span');
+            dot.className = 'ponto';
+            dot.onclick = () => mostrarSlides(slideIndex = idx + 1);
+            container.appendChild(dot);
         });
-        mostrarSlide(slideIndex);
     }
 
-    function mudarSlide(n) { mostrarSlide(slideIndex += n); }
-    function irParaSlide(n) { mostrarSlide(slideIndex = n); }
+    function mudarSlide(n) {
+        mostrarSlides(slideIndex += n);
+    }
 
-    function mostrarSlide(n) {
-        const slides = document.querySelectorAll('.meu-slide');
-        const pontos = document.querySelectorAll('.ponto');
+    function mostrarSlides(n) {
+        const slides = document.getElementsByClassName("meu-slide");
+        const pontos = document.getElementsByClassName("ponto");
+        
+        if (slides.length === 0) return;
+        
+        if (n > slides.length) slideIndex = 1;
+        if (n < 1) slideIndex = slides.length;
+
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (let i = 0; i < pontos.length; i++) {
+            pontos[i].className = pontos[i].className.replace(" active", "");
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+        if (pontos[slideIndex - 1]) {
+            pontos[slideIndex - 1].className += " active";
+        }
+    }
+
+    /* Funções do Novo Carrossel de Preservação */
+    function mudarSlidePreservacao(n) {
+        mostrarSlidesPreservacao(slidePresIndex += n);
+    }
+
+    function mostrarSlidesPreservacao(n) {
+        const slides = document.getElementsByClassName("slide-pres");
         if (slides.length === 0) return;
 
-        if (n >= slides.length) slideIndex = 0;
-        if (n < 0) slideIndex = slides.length - 1;
+        if (n > slides.length) slidePresIndex = 1;
+        if (n < 1) slidePresIndex = slides.length;
 
-        slides.forEach(s => s.style.display = 'none');
-        pontos.forEach(p => p.classList.remove('active'));
-
-        if(slides[slideIndex]) slides[slideIndex].style.display = 'block';
-        if(pontos[slideIndex]) pontos[slideIndex].classList.add('active');
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slidePresIndex - 1].style.display = "block";
     }
 
-    function inicializarCarrosselPreservacao() { mostrarSlidePreservacao(slidePresIndex); }
-    function mudarSlidePreservacao(n) { mostrarSlidePreservacao(slidePresIndex += n); }
+    function abrirLightboxCinema(idx) {
+        lightboxIndex = idx;
+        const modal = document.getElementById('lb-modal');
+        const container = document.getElementById('lb-midia-container');
+        const legenda = document.getElementById('lb-legenda');
 
-    function mostrarSlidePreservacao(n) {
-        const slides = document.querySelectorAll('.slide-pres');
-        if (slides.length === 0) return;
+        const midiaUrl = fotosArray[lightboxIndex];
+        const isVid = midiaUrl.startsWith('data:video') || midiaUrl.endsWith('.mp4');
 
-        if (n >= slides.length) slidePresIndex = 0;
-        if (n < 0) slidePresIndex = slides.length - 1;
+        if (isVid) {
+            container.innerHTML = `<video id="lb-img" src="${midiaUrl}" controls autoplay></video>`;
+        } else {
+            container.innerHTML = `<img id="lb-img" src="${midiaUrl}" alt="Ampliado">`;
+        }
 
-        slides.forEach(s => s.style.display = 'none');
-        if(slides[slidePresIndex]) slides[slidePresIndex].style.display = 'block';
+        legenda.textContent = legendasArray[lightboxIndex];
+        modal.style.display = "flex";
     }
 
-    function fecharLightboxCinema() { document.getElementById('lb-modal').style.display = 'none'; }
+    function fecharLightboxCinema() {
+        document.getElementById('lb-modal').style.display = "none";
+    }
+
+    function navegarLightbox(n) {
+        lightboxIndex += n;
+        if (lightboxIndex >= fotosArray.length) lightboxIndex = 0;
+        if (lightboxIndex < 0) lightboxIndex = fotosArray.length - 1;
+
+        abrirLightboxCinema(lightboxIndex);
+    }
 </script>
-
 </body>
 </html>
